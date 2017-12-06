@@ -8,6 +8,14 @@
 \description{
 A class for week numbers, according to ISO 8601.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/hmalmedal/weeknumber}
+  \item Report bugs at \url{https://github.com/hmalmedal/weeknumber/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Håkon Malmedal \email{hmalmedal@gmail.com}
 

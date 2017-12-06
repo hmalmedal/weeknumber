@@ -1,0 +1,10 @@
+Package: weeknumber
+Title: A Class for Week Numbers
+Version: 1.0
+Authors@R: person("Håkon", "Malmedal", email = "hmalmedal@gmail.com",
+                  role = c("aut", "cre"))
+Description: A class for week numbers, according to ISO 8601.
+License: GPL (>= 3)
+Encoding: UTF-8
+RoxygenNote: 6.0.1
+Imports: lubridate

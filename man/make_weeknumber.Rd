@@ -15,9 +15,10 @@ make_weeknumber(year = 2000, week = 1)
 Make week number object from year and week.
 }
 \details{
-Input arguments are recycled.
+Input arguments are recycled. Invalid weeks result in \code{NA}.
 }
 \examples{
 make_weeknumber(2000:2001, 4:6)
+make_weeknumber(2019:2020, 53)
 
 }

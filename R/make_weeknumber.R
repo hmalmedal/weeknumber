@@ -2,13 +2,14 @@
 #'
 #' Make week number object from year and week.
 #'
-#' Input arguments are recycled.
+#' Input arguments are recycled. Invalid weeks result in \code{NA}.
 #'
 #' @param year Year, coerced to numeric.
 #' @param week Week, coerced to numeric.
 #'
 #' @examples
 #' make_weeknumber(2000:2001, 4:6)
+#' make_weeknumber(2019:2020, 53)
 #'
 #' @export
 make_weeknumber <- function(year = 2000, week = 1) {

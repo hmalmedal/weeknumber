@@ -7,7 +7,7 @@
 year_week(x)
 }
 \arguments{
-\item{x}{An object}
+\item{x}{An object.}
 }
 \value{
 A named list with two elements: \code{year} and \code{week}.

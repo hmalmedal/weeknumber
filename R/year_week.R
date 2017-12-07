@@ -1,6 +1,6 @@
 #' Get year and week number
 #'
-#' @param x An object
+#' @param x An object.
 #'
 #' @return A named list with two elements: \code{year} and \code{week}.
 #'

@@ -36,6 +36,11 @@ c.weeknumber <- function(...) {
 }
 
 #' @export
+seq.weeknumber <- function(...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
 `[.weeknumber` <- function(x, ...) {
   structure(NextMethod(), class = "weeknumber")
 }

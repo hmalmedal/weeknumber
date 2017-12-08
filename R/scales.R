@@ -76,11 +76,3 @@ scale_y_weeknumber <- function(name = ggplot2::waiver(),
     trans = weeknumber_trans()
   )
 }
-
-#' Internal
-#' @name internal
-#' @keywords internal
-#' @export
-scale_type.weeknumber <- function(x) {
-  "weeknumber"
-}

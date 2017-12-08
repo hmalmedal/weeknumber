@@ -13,7 +13,7 @@ year_week(x)
 A named list with two elements: \code{year} and \code{week}.
 }
 \description{
-Get year and week number
+Get year and week number from an object.
 }
 \examples{
 x <- as.weeknumber(c(-1:1, 51:52, NA))

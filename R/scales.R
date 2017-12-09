@@ -9,7 +9,7 @@ weeknumber_trans <- function() {
     transform = function(x) {
       structure(as.numeric(x), names = names(x))
     },
-    inverse = weeknumber::as.weeknumber
+    inverse = as.weeknumber
   )
 }
 

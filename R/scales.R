@@ -44,11 +44,6 @@ weeknumber_breaks <- function(n = 5) {
   }
 }
 
-#' Transformation for week numbers
-#'
-#' See \link[scales]{trans_new} for details.
-#'
-#' @export
 weeknumber_trans <- function() {
   scales::trans_new(
     "weeknumber",

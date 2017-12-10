@@ -41,6 +41,26 @@ seq.weeknumber <- function(...) {
 }
 
 #' @export
+Summary.weeknumber <- function(...) {
+  stop("undefined operation")
+}
+
+#' @export
+min.weeknumber <- function(...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+max.weeknumber <- function(...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+range.weeknumber <- function(...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
 `[.weeknumber` <- function(x, ...) {
   structure(NextMethod(), class = "weeknumber")
 }

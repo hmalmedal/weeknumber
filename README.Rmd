@@ -1,0 +1,65 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# A Class for Week Numbers
+
+A class for week numbers, according to ISO 8601.
+
+## Installation
+
+Install from [GitHub](https://github.com/hmalmedal/weeknumber):
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("hmalmedal/weeknumber")
+```
+
+## Examples
+
+Coercion to the week number class:
+
+```{r coercion}
+library(weeknumber)
+as.weeknumber(c(-1:1, 51:52, NA))
+as.weeknumber("2000-W01")
+as.weeknumber(as.Date("2000-12-28"))
+```
+
+Make week number object from year and week:
+
+```{r make_weeknumber}
+make_weeknumber(2000:2001, 4:6)
+make_weeknumber(2019:2020, 53)
+```
+
+Get year and week number from an object:
+
+```{r year_week}
+x <- as.weeknumber(c(-1:1, 51:52, NA))
+year_week(x)
+```
+
+## Plotting
+
+```{r plot}
+set.seed(0)
+x <- seq(as.weeknumber("2000-W01"), as.weeknumber("2000-W09"))
+y <- cumsum(rnorm(length(x)))
+d <- data.frame(x, y)
+
+library(ggplot2)
+p <- ggplot(d, aes(x, y)) +
+  geom_line()
+print(p)
+```

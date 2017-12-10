@@ -1,3 +1,49 @@
+weeknumber_breaks <- function(n = 5) {
+  function(x) {
+    lim <- n + 2
+
+    x1 <- floor(x[1])
+    x2 <- ceiling(x[2])
+
+    y1 <- year_week(x1)$year
+    y2 <- year_week(x2)$year
+    y <- c(y1, y2)
+
+    if (diff(y) > 10) {
+      return(
+        make_weeknumber(scales::pretty_breaks(n = n)(y))
+      )
+    }
+
+    y <- seq(y1, y2)
+    w <- seq(x1, x2)
+    breaks <- w
+
+    if (length(breaks) > lim) {
+      breaks <- w[w %% 2 == 0]
+    }
+    if (length(breaks) > lim) {
+      breaks <- w[w %% 4 == 0]
+    }
+    if (length(breaks) > lim) {
+      breaks <- w[w %% 8 == 0]
+    }
+    if (length(breaks) > lim) {
+      d <- expand.grid(y = y, w = c(1, 14, 27, 40))
+      breaks <- w[w %in% make_weeknumber(d$y, d$w)]
+    }
+    if (length(breaks) > lim) {
+      d <- expand.grid(y = y, w = c(1, 27))
+      breaks <- w[w %in% make_weeknumber(d$y, d$w)]
+    }
+    if (length(breaks) > lim) {
+      y_breaks <- scales::pretty_breaks(n = n)(y)
+      breaks <- w[w %in% make_weeknumber(y_breaks)]
+    }
+    breaks
+  }
+}
+
 #' Transformation for week numbers
 #'
 #' See \link[scales]{trans_new} for details.
@@ -9,7 +55,8 @@ weeknumber_trans <- function() {
     transform = function(x) {
       structure(as.numeric(x), names = names(x))
     },
-    inverse = as.weeknumber
+    inverse = as.weeknumber,
+    breaks = weeknumber_breaks()
   )
 }
 

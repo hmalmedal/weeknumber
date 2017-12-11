@@ -61,6 +61,68 @@ round.weeknumber <- function(x, ...) {
 }
 
 #' @export
+Ops.weeknumber <- function(e1, e2) {
+  stop("undefined operation")
+}
+
+#' @export
+`+.weeknumber` <- function(e1, e2) {
+  if (nargs() == 1) {
+    structure(NextMethod(), class = "weeknumber")
+  } else if (inherits(e1, "weeknumber") && inherits(e2, "weeknumber")) {
+    stop("undefined operation")
+  } else {
+    structure(NextMethod(), class = "weeknumber")
+  }
+}
+
+#' @export
+`-.weeknumber` <- function(e1, e2) {
+  if (nargs() == 1) {
+    stop("undefined operation")
+  } else if (inherits(e2, "weeknumber")) {
+    stop("undefined operation")
+  } else {
+    structure(NextMethod(), class = "weeknumber")
+  }
+}
+
+#' @export
+`==.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+`!=.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+`<.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+`<=.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+`>=.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+`>.weeknumber` <- function(e1, e2) {
+  NextMethod()
+}
+
+#' @export
+Complex.weeknumber <- function(z) {
+  stop("undefined operation")
+}
+
+#' @export
 Summary.weeknumber <- function(..., na.rm = FALSE) {
   stop("undefined operation")
 }

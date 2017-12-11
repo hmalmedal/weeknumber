@@ -20,13 +20,16 @@ weeknumber_breaks <- function(n = 5) {
     breaks <- w
 
     if (length(breaks) > lim) {
-      breaks <- w[w %% 2 == 0]
+      i <- unclass(w) %% 2 == 0
+      breaks <- w[i]
     }
     if (length(breaks) > lim) {
-      breaks <- w[w %% 4 == 0]
+      i <- unclass(w) %% 4 == 0
+      breaks <- w[i]
     }
     if (length(breaks) > lim) {
-      breaks <- w[w %% 8 == 0]
+      i <- unclass(w) %% 8 == 0
+      breaks <- w[i]
     }
     if (length(breaks) > lim) {
       d <- expand.grid(y = y, w = c(1, 14, 27, 40))

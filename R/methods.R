@@ -41,6 +41,26 @@ seq.weeknumber <- function(...) {
 }
 
 #' @export
+Math.weeknumber <- function(x, ...) {
+  stop("undefined operation")
+}
+
+#' @export
+floor.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+ceiling.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+round.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
 Summary.weeknumber <- function(..., na.rm = FALSE) {
   stop("undefined operation")
 }

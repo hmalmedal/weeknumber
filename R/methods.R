@@ -41,22 +41,22 @@ seq.weeknumber <- function(...) {
 }
 
 #' @export
-Summary.weeknumber <- function(...) {
+Summary.weeknumber <- function(..., na.rm = FALSE) {
   stop("undefined operation")
 }
 
 #' @export
-min.weeknumber <- function(...) {
+min.weeknumber <- function(..., na.rm = FALSE) {
   structure(NextMethod(), class = "weeknumber")
 }
 
 #' @export
-max.weeknumber <- function(...) {
+max.weeknumber <- function(..., na.rm = FALSE) {
   structure(NextMethod(), class = "weeknumber")
 }
 
 #' @export
-range.weeknumber <- function(...) {
+range.weeknumber <- function(..., na.rm = FALSE) {
   structure(NextMethod(), class = "weeknumber")
 }
 

@@ -5,8 +5,11 @@ Authors@R: person("Håkon", "Malmedal", email = "hmalmedal@gmail.com",
                   role = c("aut", "cre"))
 Description: A class for week numbers, according to ISO 8601.
 License: GPL (>= 3)
-Encoding: UTF-8
 URL: https://github.com/hmalmedal/weeknumber
 BugReports: https://github.com/hmalmedal/weeknumber/issues
+Imports:
+    ggplot2,
+    lubridate,
+    scales
+Encoding: UTF-8
 RoxygenNote: 6.0.1
-Imports: ggplot2, lubridate, scales

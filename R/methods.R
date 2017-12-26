@@ -41,6 +41,11 @@ seq.weeknumber <- function(...) {
 }
 
 #' @export
+unique.weeknumber <- function(x, incomparables = FALSE, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
 Math.weeknumber <- function(x, ...) {
   stop("undefined operation")
 }

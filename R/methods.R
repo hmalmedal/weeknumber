@@ -56,7 +56,22 @@ ceiling.weeknumber <- function(x, ...) {
 }
 
 #' @export
+trunc.weeknumber <- function(x, ...) {
+  round(x - 0.4999999)
+}
+
+#' @export
 round.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+cummax.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
+cummin.weeknumber <- function(x, ...) {
   structure(NextMethod(), class = "weeknumber")
 }
 

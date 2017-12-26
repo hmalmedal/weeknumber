@@ -46,6 +46,11 @@ unique.weeknumber <- function(x, incomparables = FALSE, ...) {
 }
 
 #' @export
+as.list.weeknumber <- function(x, ...) {
+  lapply(unclass(x), as.weeknumber)
+}
+
+#' @export
 Math.weeknumber <- function(x, ...) {
   stop("undefined operation")
 }

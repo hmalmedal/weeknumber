@@ -3,13 +3,9 @@
 \name{internal}
 \alias{internal}
 \alias{scale_type.weeknumber}
-\alias{internal}
-\alias{type_sum.weeknumber}
 \title{Internal}
 \usage{
 scale_type.weeknumber(x)
-
-type_sum.weeknumber(x)
 }
 \description{
 Internal

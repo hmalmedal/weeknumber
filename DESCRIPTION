@@ -10,6 +10,7 @@ BugReports: https://github.com/hmalmedal/weeknumber/issues
 Imports:
     ggplot2,
     lubridate,
+    pillar,
     scales
 Encoding: UTF-8
 RoxygenNote: 6.0.1

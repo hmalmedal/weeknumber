@@ -51,6 +51,11 @@ as.list.weeknumber <- function(x, ...) {
 }
 
 #' @export
+rep.weeknumber <- function(x, ...) {
+  structure(NextMethod(), class = "weeknumber")
+}
+
+#' @export
 Math.weeknumber <- function(x, ...) {
   stop("undefined operation")
 }

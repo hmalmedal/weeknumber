@@ -18,23 +18,7 @@ scale_y_weeknumber(name = ggplot2::waiver(), breaks = ggplot2::waiver(),
   na.value = NA_real_, position = "left")
 }
 \arguments{
-\item{name}{See link for details.}
-
-\item{breaks}{See link for details.}
-
-\item{minor_breaks}{See link for details.}
-
-\item{labels}{See link for details.}
-
-\item{limits}{See link for details.}
-
-\item{expand}{See link for details.}
-
-\item{oob}{See link for details.}
-
-\item{na.value}{See link for details.}
-
-\item{position}{See link for details.}
+\item{name, breaks, minor_breaks, labels, limits, expand, oob, na.value, position}{See link for details.}
 }
 \description{
 See \code{\link[ggplot2]{scale_continuous}} for details.

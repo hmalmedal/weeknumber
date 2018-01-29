@@ -62,15 +62,8 @@ weeknumber_trans <- function() {
 #'
 #' See \code{\link[ggplot2]{scale_continuous}} for details.
 #'
-#' @param name See link for details.
-#' @param breaks See link for details.
-#' @param minor_breaks See link for details.
-#' @param labels See link for details.
-#' @param limits See link for details.
-#' @param expand See link for details.
-#' @param oob See link for details.
-#' @param na.value See link for details.
-#' @param position See link for details.
+#' @param name,breaks,minor_breaks,labels,limits,expand,oob,na.value,position
+#'   See link for details.
 #'
 #' @name scale_weeknumber
 #' @export

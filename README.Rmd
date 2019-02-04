@@ -21,8 +21,7 @@ A class for week numbers, according to ISO 8601.
 Install from [GitHub](https://github.com/hmalmedal/weeknumber):
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("hmalmedal/weeknumber")
+remotes::install_github("hmalmedal/weeknumber")
 ```
 
 ## Examples

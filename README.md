@@ -11,8 +11,7 @@ Installation
 Install from [GitHub](https://github.com/hmalmedal/weeknumber):
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("hmalmedal/weeknumber")
+remotes::install_github("hmalmedal/weeknumber")
 ```
 
 Examples

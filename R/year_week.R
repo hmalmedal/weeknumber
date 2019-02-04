@@ -4,7 +4,7 @@
 #'
 #' @param x An object.
 #'
-#' @return A named list with two elements: \code{year} and \code{week}.
+#' @return A named list with two elements: `year` and `week`.
 #'
 #' @examples
 #' x <- as.weeknumber(c(-1:1, 51:52, NA))

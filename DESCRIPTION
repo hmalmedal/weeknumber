@@ -1,8 +1,11 @@
 Package: weeknumber
 Title: A Class for Week Numbers
 Version: 1.0
-Authors@R: person("Håkon", "Malmedal", email = "hmalmedal@gmail.com",
-                  role = c("aut", "cre"))
+Authors@R: 
+    person(given = "Håkon",
+           family = "Malmedal",
+           role = c("aut", "cre"),
+           email = "hmalmedal@gmail.com")
 Description: A class for week numbers, according to ISO 8601.
 License: GPL (>= 3)
 URL: https://github.com/hmalmedal/weeknumber
@@ -13,4 +16,5 @@ Imports:
     pillar,
     scales
 Encoding: UTF-8
-RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1

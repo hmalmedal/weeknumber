@@ -60,7 +60,7 @@ weeknumber_trans <- function() {
 
 #' Scales for week numbers
 #'
-#' See \code{\link[ggplot2]{scale_continuous}} for details.
+#' See [ggplot2::scale_continuous()] for details.
 #'
 #' @param name,breaks,minor_breaks,labels,limits,expand,oob,na.value,position
 #'   See link for details.

@@ -2,7 +2,7 @@
 #'
 #' Make week number object from year and week.
 #'
-#' Input arguments are recycled. Invalid weeks result in \code{NA}.
+#' Input arguments are recycled. Invalid weeks result in `NA`.
 #'
 #' @param year Year, coerced to numeric.
 #' @param week Week, coerced to numeric.

@@ -49,14 +49,21 @@ x <- as.weeknumber(c(-1:1, 51:52, NA))
 year_week(x)
 ```
 
-## Plotting
+Print a tibble:
+
+```{r tibble}
+set.seed(0)
+library(tibble)
+d <- tibble(
+  x = seq(as.weeknumber("2000-W01"), as.weeknumber("2000-W09")),
+  y = cumsum(rnorm(length(x)))
+)
+print(d)
+```
+
+Plot with week number scale:
 
 ```{r plot}
-set.seed(0)
-x <- seq(as.weeknumber("2000-W01"), as.weeknumber("2000-W09"))
-y <- cumsum(rnorm(length(x)))
-d <- data.frame(x, y)
-
 library(ggplot2)
 p <- ggplot(d, aes(x, y)) +
   geom_line()

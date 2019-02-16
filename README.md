@@ -50,15 +50,33 @@ year_week(x)
 #> [1] 52  1  2 52  1 NA
 ```
 
-Plotting
---------
+Print a tibble:
 
 ``` r
 set.seed(0)
-x <- seq(as.weeknumber("2000-W01"), as.weeknumber("2000-W09"))
-y <- cumsum(rnorm(length(x)))
-d <- data.frame(x, y)
+library(tibble)
+d <- tibble(
+  x = seq(as.weeknumber("2000-W01"), as.weeknumber("2000-W09")),
+  y = cumsum(rnorm(length(x)))
+)
+print(d)
+#> # A tibble: 9 x 2
+#>          x     y
+#>     <week> <dbl>
+#> 1 2000-W01 1.26 
+#> 2 2000-W02 0.937
+#> 3 2000-W03 2.27 
+#> 4 2000-W04 3.54 
+#> 5 2000-W05 3.95 
+#> 6 2000-W06 2.41 
+#> 7 2000-W07 1.49 
+#> 8 2000-W08 1.19 
+#> 9 2000-W09 1.18
+```
 
+Plot with week number scale:
+
+``` r
 library(ggplot2)
 p <- ggplot(d, aes(x, y)) +
   geom_line()

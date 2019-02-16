@@ -103,16 +103,28 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $week</span>
 <span class="co">#&gt; [1] 52  1  2 52  1 NA</span></code></pre></div>
-</div>
-<div id="plotting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plotting" class="anchor"></a>Plotting</h2>
+<p>Print a tibble:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">0</span>)
-x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="kw"><a href="reference/as.weeknumber.html">as.weeknumber</a></span>(<span class="st">"2000-W01"</span>), <span class="kw"><a href="reference/as.weeknumber.html">as.weeknumber</a></span>(<span class="st">"2000-W09"</span>))
-y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cumsum">cumsum</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(x)))
-d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(x, y)
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
+d &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(
+  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="kw"><a href="reference/as.weeknumber.html">as.weeknumber</a></span>(<span class="st">"2000-W01"</span>), <span class="kw"><a href="reference/as.weeknumber.html">as.weeknumber</a></span>(<span class="st">"2000-W09"</span>)),
+  <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cumsum">cumsum</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(x)))
+)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(d)
+<span class="co">#&gt; # A tibble: 9 x 2</span>
+<span class="co">#&gt;          x     y</span>
+<span class="co">#&gt;     &lt;week&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 2000-W01 1.26 </span>
+<span class="co">#&gt; 2 2000-W02 0.937</span>
+<span class="co">#&gt; 3 2000-W03 2.27 </span>
+<span class="co">#&gt; 4 2000-W04 3.54 </span>
+<span class="co">#&gt; 5 2000-W05 3.95 </span>
+<span class="co">#&gt; 6 2000-W06 2.41 </span>
+<span class="co">#&gt; 7 2000-W07 1.49 </span>
+<span class="co">#&gt; 8 2000-W08 1.19 </span>
+<span class="co">#&gt; 9 2000-W09 1.18</span></code></pre></div>
+<p>Plot with week number scale:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 p &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(d, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x, y)) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(p)</code></pre></div>

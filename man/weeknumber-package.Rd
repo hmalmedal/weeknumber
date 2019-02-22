@@ -11,6 +11,7 @@ A class for week numbers, according to ISO 8601.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://hmalmedal.github.io/weeknumber/}
   \item \url{https://github.com/hmalmedal/weeknumber}
   \item Report bugs at \url{https://github.com/hmalmedal/weeknumber/issues}
 }

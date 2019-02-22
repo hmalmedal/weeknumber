@@ -8,7 +8,8 @@ Authors@R:
            email = "hmalmedal@gmail.com")
 Description: A class for week numbers, according to ISO 8601.
 License: GPL (>= 3)
-URL: https://github.com/hmalmedal/weeknumber
+URL: https://hmalmedal.github.io/weeknumber/,
+    https://github.com/hmalmedal/weeknumber
 BugReports: https://github.com/hmalmedal/weeknumber/issues
 Imports:
     ggplot2 (>= 3.0.0),

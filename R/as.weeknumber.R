@@ -28,6 +28,11 @@ as.weeknumber.character <- function(x) {
 }
 
 #' @export
+as.weeknumber.factor <- function(x) {
+  as.weeknumber(as.character(x))
+}
+
+#' @export
 as.weeknumber.weeknumber <- function(x) {
   unname(x)
 }

@@ -9,7 +9,7 @@ type_sum.weeknumber <- function(x) {
 pillar_shaft.weeknumber <- function(x, ...) {
   out <- format(x, justify = "right")
   out <- sub("-W", pillar::style_subtle("-W"), out, fixed = TRUE)
-  out[is.na(x)] <- NA
+  out[!is.finite(x)] <- NA
   pillar::new_pillar_shaft_simple(out, align = "right")
 }
 

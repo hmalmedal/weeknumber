@@ -28,3 +28,20 @@ year_week.weeknumber <- function(x) {
 
   list(year = year, week = week)
 }
+
+#' @export
+year_week.character <- function(x) {
+  year_week(as.weeknumber(x))
+}
+
+#' @export
+year_week.factor <- year_week.character
+
+#' @export
+year_week.Date <- year_week.character
+
+#' @export
+year_week.POSIXct <- year_week.character
+
+#' @export
+year_week.POSIXlt <- year_week.character

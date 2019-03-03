@@ -1,7 +1,7 @@
 Package: weeknumber
 Title: A Class for Week Numbers
 Version: 1.0
-Authors@R: 
+Authors@R:
     person(given = "Håkon",
            family = "Malmedal",
            role = c("aut", "cre"),

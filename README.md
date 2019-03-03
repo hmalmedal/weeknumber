@@ -3,6 +3,8 @@
 A Class for Week Numbers
 ========================
 
+[![Travis build status](https://travis-ci.org/hmalmedal/weeknumber.svg?branch=master)](https://travis-ci.org/hmalmedal/weeknumber)
+
 A class for week numbers, according to ISO 8601.
 
 Installation

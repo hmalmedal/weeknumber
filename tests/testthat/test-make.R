@@ -1,5 +1,3 @@
-context("test-make")
-
 test_that("make gives correct class", {
   expect_is(make_weeknumber(2000, 1:2), "weeknumber")
 })

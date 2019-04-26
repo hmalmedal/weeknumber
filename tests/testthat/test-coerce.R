@@ -1,5 +1,3 @@
-context("test-coerce")
-
 test_that("coercion works", {
   x <- structure(1000, class = "weeknumber")
   expect_equal(as.weeknumber(1000), x)

@@ -30,7 +30,7 @@ remotes::install_github("hmalmedal/weeknumber")
 
 Coercion to the week number class:
 
-```{r coercion}
+```{r coercion, message=FALSE}
 library(weeknumber)
 as.weeknumber(c(-1:1, 51:52, NA))
 as.weeknumber("2000-W01")

@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-A Class for Week Numbers
-========================
 
-[![Travis build status](https://travis-ci.org/hmalmedal/weeknumber.svg?branch=master)](https://travis-ci.org/hmalmedal/weeknumber)
+# A Class for Week Numbers
+
+[![Travis build
+status](https://travis-ci.org/hmalmedal/weeknumber.svg?branch=master)](https://travis-ci.org/hmalmedal/weeknumber)
 
 A class for week numbers, according to ISO 8601.
 
-Installation
-------------
+## Installation
 
 Install from [GitHub](https://github.com/hmalmedal/weeknumber):
 
@@ -16,8 +16,7 @@ Install from [GitHub](https://github.com/hmalmedal/weeknumber):
 remotes::install_github("hmalmedal/weeknumber")
 ```
 
-Examples
---------
+## Examples
 
 Coercion to the week number class:
 

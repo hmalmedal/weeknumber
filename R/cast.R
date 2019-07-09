@@ -9,9 +9,8 @@
 #' as_weeknumber("2000-W01")
 #' as_weeknumber(as.Date("2000-12-28"))
 #' @export
-as_weeknumber <- function(x) {
+as_weeknumber <- function(x)
   vec_cast(x, new_weeknumber())
-}
 
 #' @name internal
 #' @method vec_cast weeknumber

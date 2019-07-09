@@ -1,4 +1,4 @@
-weeknumber_breaks <- function(n = 5) {
+weeknumber_breaks <- function(n = 5)
   function(x) {
     lim <- n + 2
 
@@ -45,9 +45,8 @@ weeknumber_breaks <- function(n = 5) {
     }
     breaks
   }
-}
 
-weeknumber_trans <- function() {
+weeknumber_trans <- function()
   scales::trans_new(
     "weeknumber",
     transform = function(x) {
@@ -56,7 +55,6 @@ weeknumber_trans <- function() {
     inverse = as_weeknumber,
     breaks = weeknumber_breaks()
   )
-}
 
 #' Scales for week numbers
 #'
@@ -75,7 +73,7 @@ scale_x_weeknumber <- function(name = ggplot2::waiver(),
                                expand = ggplot2::waiver(),
                                oob = scales::censor,
                                na.value = NA_real_,
-                               position = "bottom") {
+                               position = "bottom")
   ggplot2::scale_x_continuous(
     name = name,
     breaks = breaks,
@@ -88,7 +86,6 @@ scale_x_weeknumber <- function(name = ggplot2::waiver(),
     position = position,
     trans = weeknumber_trans()
   )
-}
 
 #' @name scale_weeknumber
 #' @export
@@ -100,7 +97,7 @@ scale_y_weeknumber <- function(name = ggplot2::waiver(),
                                expand = ggplot2::waiver(),
                                oob = scales::censor,
                                na.value = NA_real_,
-                               position = "left") {
+                               position = "left")
   ggplot2::scale_y_continuous(
     name = name,
     breaks = breaks,
@@ -113,10 +110,7 @@ scale_y_weeknumber <- function(name = ggplot2::waiver(),
     position = position,
     trans = weeknumber_trans()
   )
-}
 
 #' @importFrom ggplot2 scale_type
 #' @export
-scale_type.weeknumber <- function(x) {
-  "weeknumber"
-}
+scale_type.weeknumber <- function(x) "weeknumber"

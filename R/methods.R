@@ -1,4 +1,2 @@
 #' @export
-seq.weeknumber <- function(...) {
-  weeknumber(NextMethod())
-}
+seq.weeknumber <- function(...) weeknumber(NextMethod())

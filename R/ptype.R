@@ -1,7 +1,5 @@
 #' @export
-vec_ptype_abbr.weeknumber <- function(x) {
-  "week"
-}
+vec_ptype_abbr.weeknumber <- function(x) "week"
 
 #' @name internal
 #' @method vec_ptype2 weeknumber

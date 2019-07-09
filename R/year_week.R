@@ -7,9 +7,8 @@
 #' @return A named list with two elements: `year` and `week`.
 #'
 #' @examples
-#' x <- as.weeknumber(c(-1:1, 51:52, NA))
+#' x <- as_weeknumber(c(-1:1, 51:52, NA))
 #' year_week(x)
-#'
 #' @export
 year_week <- function(x) {
   UseMethod("year_week")
@@ -17,7 +16,7 @@ year_week <- function(x) {
 
 #' @export
 year_week.weeknumber <- function(x) {
-  x <- unclass(x)
+  x <- vec_data(x)
 
   cycle <- x %/% max(year_intervals)
   x <- x %% max(year_intervals)
@@ -30,9 +29,7 @@ year_week.weeknumber <- function(x) {
 }
 
 #' @export
-year_week.character <- function(x) {
-  year_week(as.weeknumber(x))
-}
+year_week.character <- function(x) year_week(as_weeknumber(x))
 
 #' @export
 year_week.factor <- year_week.character
@@ -41,7 +38,4 @@ year_week.factor <- year_week.character
 year_week.Date <- year_week.character
 
 #' @export
-year_week.POSIXct <- year_week.character
-
-#' @export
-year_week.POSIXlt <- year_week.character
+year_week.POSIXt <- year_week.character

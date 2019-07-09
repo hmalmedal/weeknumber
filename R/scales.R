@@ -53,7 +53,7 @@ weeknumber_trans <- function() {
     transform = function(x) {
       structure(as.numeric(x), names = names(x))
     },
-    inverse = as.weeknumber,
+    inverse = as_weeknumber,
     breaks = weeknumber_breaks()
   )
 }

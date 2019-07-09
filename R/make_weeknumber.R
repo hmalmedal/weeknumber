@@ -10,12 +10,11 @@
 #' @examples
 #' make_weeknumber(2000:2001, 4:6)
 #' make_weeknumber(2019:2020, 53)
-#'
 #' @export
 make_weeknumber <- function(year = 2000, week = 1) {
   l <- lengths(list(year, week))
   if (min(l) == 0) {
-    return(structure(numeric(), class = "weeknumber"))
+    return(new_weeknumber())
   }
 
   year <- as.numeric(year)
@@ -33,5 +32,5 @@ make_weeknumber <- function(year = 2000, week = 1) {
 
   x <- year_intervals[j] + week + cycle * max(year_intervals) - 1
 
-  structure(x, class = "weeknumber")
+  new_weeknumber(x)
 }

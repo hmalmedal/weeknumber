@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce to week number class — as.weeknumber • weeknumber</title>
+<title>Week number class — weeknumber • weeknumber</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Coerce to week number class — as.weeknumber" />
+<meta property="og:title" content="Week number class — weeknumber" />
 
-<meta property="og:description" content="Coerce object to week number class." />
+<meta property="og:description" content="Constructor, helper and test functions for the week number class." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,18 +99,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce to week number class</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hmalmedal/weeknumber/blob/master/R/as.weeknumber.R'><code>R/as.weeknumber.R</code></a></small>
-    <div class="hidden name"><code>as.weeknumber.Rd</code></div>
+    <h1>Week number class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hmalmedal/weeknumber/blob/master/R/weeknumber-package.R'><code>R/weeknumber-package.R</code></a></small>
+    <div class="hidden name"><code>weeknumber.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Coerce object to week number class.</p>
+    <p>Constructor, helper and test functions for the week number class.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>as.weeknumber</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>new_weeknumber</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/double'>double</a></span>())
+
+<span class='fu'>weeknumber</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/double'>double</a></span>())
+
+<span class='fu'>is_weeknumber</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,17 +126,12 @@
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as.weeknumber</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>:<span class='fl'>1</span>, <span class='fl'>51</span>:<span class='fl'>52</span>, <span class='fl'>NA</span>))</div><div class='output co'>#&gt; [1] "1999-W52" "2000-W01" "2000-W02" "2000-W52" "2001-W01" NA        </div><div class='input'><span class='fu'>as.weeknumber</span>(<span class='st'>"2000-W01"</span>)</div><div class='output co'>#&gt; [1] "2000-W01"</div><div class='input'><span class='fu'>as.weeknumber</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.Date'>as.Date</a></span>(<span class='st'>"2000-12-28"</span>))</div><div class='output co'>#&gt; [1] "2000-W52"</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

@@ -2,7 +2,6 @@
 % Please edit documentation in R/weeknumber-package.R
 \docType{package}
 \name{weeknumber-package}
-\alias{weeknumber}
 \alias{weeknumber-package}
 \title{weeknumber: A Class for Week Numbers}
 \description{

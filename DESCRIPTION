@@ -14,8 +14,10 @@ BugReports: https://github.com/hmalmedal/weeknumber/issues
 Imports:
     ggplot2 (>= 3.0.0),
     lubridate,
+    methods,
     pillar,
-    scales
+    scales,
+    vctrs (>= 0.2.0)
 Suggests:
     testthat
 Encoding: UTF-8

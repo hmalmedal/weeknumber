@@ -27,7 +27,6 @@ weeknumber <- function(x = double()) {
   new_weeknumber(x)
 }
 
-#' @importFrom methods setOldClass
 methods::setOldClass(c("weeknumber", "vctrs_vctr"))
 
 #' @name weeknumber

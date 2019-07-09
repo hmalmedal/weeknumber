@@ -2,27 +2,21 @@
 #'
 #' Make week number object from year and week.
 #'
-#' Input arguments are recycled. Invalid weeks result in `NA`.
+#' Input arguments are recycled to their common size. Invalid weeks result in
+#' `NA`.
 #'
 #' @param year Year, coerced to numeric.
 #' @param week Week, coerced to numeric.
 #'
 #' @examples
-#' make_weeknumber(2000:2001, 4:6)
+#' make_weeknumber(2000:2001, 4:5)
 #' make_weeknumber(2019:2020, 53)
 #' @export
 make_weeknumber <- function(year = 2000, week = 1) {
-  l <- lengths(list(year, week))
-  if (min(l) == 0) {
-    return(new_weeknumber())
-  }
+  n <- vec_recycle_common(year = year, week = week)
 
-  year <- as.numeric(year)
-  week <- as.numeric(week)
-
-  n <- max(l)
-  year <- rep_len(year, n)
-  week <- rep_len(week, n)
+  year <- as.numeric(n$year)
+  week <- as.numeric(n$week)
 
   cycle <- (year - origin) %/% cycle_length
   j <- (year %% cycle_length) + 1

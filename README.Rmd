@@ -40,7 +40,7 @@ as_weeknumber(as.Date("2000-12-28"))
 Make week number object from year and week:
 
 ```{r make_weeknumber}
-make_weeknumber(2000:2001, 4:6)
+make_weeknumber(2000:2001, 4:5)
 make_weeknumber(2019:2020, 53)
 ```
 

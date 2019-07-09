@@ -36,9 +36,9 @@ as_weeknumber(as.Date("2000-12-28"))
 Make week number object from year and week:
 
 ``` r
-make_weeknumber(2000:2001, 4:6)
-#> <weeknumber[3]>
-#> [1] 2000-W04 2001-W05 2000-W06
+make_weeknumber(2000:2001, 4:5)
+#> <weeknumber[2]>
+#> [1] 2000-W04 2001-W05
 make_weeknumber(2019:2020, 53)
 #> <weeknumber[2]>
 #> [1] <NA>     2020-W53

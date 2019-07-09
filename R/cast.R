@@ -61,6 +61,11 @@ vec_cast.character.weeknumber <- function(x, to, ...) format(x)
 vec_cast.weeknumber.factor <- function(x, to, ...)
   vec_cast(vec_cast(x, character()), new_weeknumber())
 
+#' @method vec_cast.factor weeknumber
+#' @export
+vec_cast.factor.weeknumber <- function(x, to, ...)
+  vec_cast(vec_cast(x, character()), new_factor())
+
 #' @method vec_cast.weeknumber Date
 #' @export
 vec_cast.weeknumber.Date <- function(x, to, ...)

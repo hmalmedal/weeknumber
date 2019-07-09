@@ -41,7 +41,8 @@ vec_cast.weeknumber.integer <- function(x, to, ...) weeknumber(x)
 
 #' @method vec_cast.integer weeknumber
 #' @export
-vec_cast.integer.weeknumber <- function(x, to, ...) as.integer(vec_data(x))
+vec_cast.integer.weeknumber <- function(x, to, ...)
+  vec_cast(vec_data(x), integer())
 
 #' @method vec_cast.weeknumber character
 #' @export

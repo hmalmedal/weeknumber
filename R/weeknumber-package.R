@@ -13,6 +13,7 @@ year_intervals <- cumsum(c(0, weeks_cycle))
 #' @export
 new_weeknumber <- function(x = double()) {
   vec_assert(x, double())
+  x[!is.finite(x)] <- NA
   new_vctr(x, class = "weeknumber")
 }
 

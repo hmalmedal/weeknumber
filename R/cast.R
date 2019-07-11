@@ -26,17 +26,13 @@ vec_cast.weeknumber.default <- function(x, to, ...) vec_default_cast(x, to)
 #' @export
 vec_cast.weeknumber.weeknumber <- function(x, to, ...) x
 
-#' @method vec_cast.weeknumber double
+#' @method vec_cast.weeknumber numeric
 #' @export
-vec_cast.weeknumber.double <- function(x, to, ...) weeknumber(x)
+vec_cast.weeknumber.numeric <- function(x, to, ...) weeknumber(x)
 
 #' @method vec_cast.double weeknumber
 #' @export
 vec_cast.double.weeknumber <- function(x, to, ...) vec_data(x)
-
-#' @method vec_cast.weeknumber integer
-#' @export
-vec_cast.weeknumber.integer <- function(x, to, ...) weeknumber(x)
 
 #' @method vec_cast.integer weeknumber
 #' @export

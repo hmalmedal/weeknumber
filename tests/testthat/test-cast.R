@@ -1,4 +1,4 @@
-test_that("coercion works", {
+test_that("cast works", {
   x <- new_weeknumber(1000)
   expect_equal(as_weeknumber(1000), x)
   expect_equal(as_weeknumber("2019-W10"), x)

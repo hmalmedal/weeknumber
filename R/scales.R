@@ -49,9 +49,7 @@ weeknumber_breaks <- function(n = 5)
 weeknumber_trans <- function()
   scales::trans_new(
     "weeknumber",
-    transform = function(x) {
-      structure(as.numeric(x), names = names(x))
-    },
+    transform = vec_data,
     inverse = as_weeknumber,
     breaks = weeknumber_breaks()
   )

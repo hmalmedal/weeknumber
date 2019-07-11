@@ -9,3 +9,12 @@ test_that("cast works", {
   expect_equal(as_weeknumber(y), x)
   expect_equal(as_weeknumber(as.POSIXlt(y)), x)
 })
+
+test_that("round-trip works", {
+  x <- as_weeknumber(-1000:1000)
+  expect_equal(as_weeknumber(x), x)
+  expect_equal(as_weeknumber(as.double(x)), x)
+  expect_equal(as_weeknumber(as.integer(x)), x)
+  expect_equal(as_weeknumber(as.character(x)), x)
+  expect_equal(as_weeknumber(as.factor(x)), x)
+})

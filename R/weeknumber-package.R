@@ -32,4 +32,6 @@ methods::setOldClass(c("weeknumber", "vctrs_vctr"))
 
 #' @name weeknumber
 #' @export
-is_weeknumber <- function(x) inherits(x, "weeknumber")
+is_weeknumber <- function(x) {
+  inherits(x, "weeknumber")
+}

@@ -10,7 +10,9 @@
 #' x <- as_weeknumber(c(-1:1, 51:52, NA))
 #' year_week(x)
 #' @export
-year_week <- function(x) UseMethod("year_week")
+year_week <- function(x) {
+  UseMethod("year_week")
+}
 
 #' @export
 year_week.weeknumber <- function(x) {
@@ -27,7 +29,9 @@ year_week.weeknumber <- function(x) {
 }
 
 #' @export
-year_week.character <- function(x) year_week(as_weeknumber(x))
+year_week.character <- function(x) {
+  year_week(as_weeknumber(x))
+}
 
 #' @export
 year_week.factor <- year_week.character

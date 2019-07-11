@@ -42,7 +42,7 @@ vec_cast.integer.weeknumber <- function(x, to, ...)
 #' @method vec_cast.weeknumber character
 #' @export
 vec_cast.weeknumber.character <- function(x, to, ...) {
-  l <- strsplit(x, "-W", fixed = TRUE)
+  l <- strsplit(x, "-?W")
   y <- vapply(l, `[`, "", i = 1)
   w <- vapply(l, `[`, "", i = 2)
   make_weeknumber(y, w)

@@ -18,3 +18,12 @@ test_that("round-trip works", {
   expect_equal(as_weeknumber(as.character(x)), x)
   expect_equal(as_weeknumber(as.factor(x)), x)
 })
+
+test_that("coercion gives correct class or type", {
+  x <- as_weeknumber(0)
+  expect_s3_class(as_weeknumber(x), "weeknumber")
+  expect_type(as.double(x), "double")
+  expect_type(as.integer(x), "integer")
+  expect_type(as.character(x), "character")
+  expect_s3_class(as.factor(x), "factor")
+})

@@ -23,30 +23,6 @@ vec_ptype2.weeknumber.weeknumber <- function(x, y, ...) {
   new_weeknumber()
 }
 
-#' @method vec_ptype2.weeknumber double
-#' @export
-vec_ptype2.weeknumber.double <- function(x, y, ...) {
-  double()
-}
-
-#' @method vec_ptype2.double weeknumber
-#' @export
-vec_ptype2.double.weeknumber <- function(x, y, ...) {
-  double()
-}
-
-#' @method vec_ptype2.weeknumber integer
-#' @export
-vec_ptype2.weeknumber.integer <- function(x, y, ...) {
-  double()
-}
-
-#' @method vec_ptype2.integer weeknumber
-#' @export
-vec_ptype2.integer.weeknumber <- function(x, y, ...) {
-  double()
-}
-
 #' @method vec_ptype2.weeknumber character
 #' @export
 vec_ptype2.weeknumber.character <- function(x, y, ...) {

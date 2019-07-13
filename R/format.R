@@ -1,5 +1,9 @@
 #' @export
 format.weeknumber <- function(x, ...) {
+  if (vec_size(x) == 0) {
+    return(character())
+  }
+
   yw <- year_week(x)
 
   y <- formatC(yw$year, format = "f", digits = 0)

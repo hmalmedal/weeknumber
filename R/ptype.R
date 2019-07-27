@@ -23,50 +23,26 @@ vec_ptype2.weeknumber.weeknumber <- function(x, y, ...) {
   new_weeknumber()
 }
 
-#' @method vec_ptype2.weeknumber character
-#' @export
-vec_ptype2.weeknumber.character <- function(x, y, ...) {
-  character()
-}
-
-#' @method vec_ptype2.character weeknumber
-#' @export
-vec_ptype2.character.weeknumber <- function(x, y, ...) {
-  character()
-}
-
-#' @method vec_ptype2.weeknumber factor
-#' @export
-vec_ptype2.weeknumber.factor <- function(x, y, ...) {
-  character()
-}
-
-#' @method vec_ptype2.factor weeknumber
-#' @export
-vec_ptype2.factor.weeknumber <- function(x, y, ...) {
-  character()
-}
-
 #' @method vec_ptype2.weeknumber Date
 #' @export
 vec_ptype2.weeknumber.Date <- function(x, y, ...) {
-  new_weeknumber()
+  new_date()
 }
 
 #' @method vec_ptype2.Date weeknumber
 #' @export
 vec_ptype2.Date.weeknumber <- function(x, y, ...) {
-  new_weeknumber()
+  new_date()
 }
 
 #' @method vec_ptype2.weeknumber POSIXt
 #' @export
 vec_ptype2.weeknumber.POSIXt <- function(x, y, ...) {
-  new_weeknumber()
+  new_datetime()
 }
 
 #' @method vec_ptype2.POSIXt weeknumber
 #' @export
 vec_ptype2.POSIXt.weeknumber <- function(x, y, ...) {
-  new_weeknumber()
+  new_datetime()
 }

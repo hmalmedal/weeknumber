@@ -84,6 +84,24 @@ vec_cast.weeknumber.Date <- function(x, to, ...) {
   make_weeknumber(lubridate::isoyear(x), lubridate::isoweek(x))
 }
 
+#' @method vec_cast.Date weeknumber
+#' @export
+vec_cast.Date.weeknumber <- function(x, to, ...) {
+  vec_cast(vec_data(x) * 7 + vec_data(origin_date), new_date())
+}
+
 #' @method vec_cast.weeknumber POSIXt
 #' @export
 vec_cast.weeknumber.POSIXt <- vec_cast.weeknumber.Date
+
+#' @method vec_cast.POSIXct weeknumber
+#' @export
+vec_cast.POSIXct.weeknumber <- function(x, to, ...) {
+  vec_cast(vec_cast(x, new_date()), new_datetime())
+}
+
+#' @method vec_cast.POSIXlt weeknumber
+#' @export
+vec_cast.POSIXlt.weeknumber <- function(x, to, ...) {
+  as.POSIXlt(vec_cast(x, new_datetime()))
+}

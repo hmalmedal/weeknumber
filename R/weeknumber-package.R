@@ -4,6 +4,7 @@
 "_PACKAGE"
 
 origin <- 2000
+origin_date <- lubridate::make_date(2000, 1, 3)
 cycle_length <- 400
 year_cycle <- seq(origin, length.out = cycle_length)
 weeks_cycle <- lubridate::isoweek(lubridate::make_date(year_cycle, 12, 28))

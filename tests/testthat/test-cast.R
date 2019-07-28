@@ -17,6 +17,9 @@ test_that("round-trip works", {
   expect_equal(as_weeknumber(as.integer(x)), x)
   expect_equal(as_weeknumber(as.character(x)), x)
   expect_equal(as_weeknumber(as.factor(x)), x)
+  expect_equal(as_weeknumber(as.Date(x)), x)
+  expect_equal(as_weeknumber(as.POSIXct(x)), x)
+  expect_equal(as_weeknumber(as.POSIXlt(x)), x)
 })
 
 test_that("coercion gives correct class or type", {
@@ -26,4 +29,7 @@ test_that("coercion gives correct class or type", {
   expect_type(as.integer(x), "integer")
   expect_type(as.character(x), "character")
   expect_s3_class(as.factor(x), "factor")
+  expect_s3_class(as.Date(x), "Date")
+  expect_s3_class(as.POSIXct(x), "POSIXct")
+  expect_s3_class(as.POSIXlt(x), "POSIXlt")
 })

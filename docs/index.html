@@ -75,62 +75,62 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install from <a href="https://github.com/hmalmedal/weeknumber">GitHub</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"hmalmedal/weeknumber"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"hmalmedal/weeknumber"</span>)</a></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>Coercion to the week number class:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(weeknumber)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">51</span><span class="op">:</span><span class="dv">52</span>, <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; &lt;weeknumber[6]&gt;</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; [1] 1999-W52 2000-W01 2000-W02 2000-W52 2001-W01 &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W01"</span>)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; &lt;weeknumber[1]&gt;</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; [1] 2000-W01</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2000-12-28"</span>))</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; &lt;weeknumber[1]&gt;</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; [1] 2000-W52</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(weeknumber)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">51</span><span class="op">:</span><span class="dv">52</span>, <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; &lt;weeknumber[6]&gt;</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; [1] 1999-W52 2000-W01 2000-W02 2000-W52 2001-W01 &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W01"</span>)</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; &lt;weeknumber[1]&gt;</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; [1] 2000-W01</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="st">"2000-12-28"</span>))</a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; &lt;weeknumber[1]&gt;</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; [1] 2000-W52</span></a></code></pre></div>
 <p>Make week number object from year and week:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/make_weeknumber.html">make_weeknumber</a></span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; &lt;weeknumber[2]&gt;</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] 2000-W04 2001-W05</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/make_weeknumber.html">make_weeknumber</a></span>(<span class="dv">2019</span><span class="op">:</span><span class="dv">2020</span>, <span class="dv">53</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; &lt;weeknumber[2]&gt;</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [1] &lt;NA&gt;     2020-W53</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/make_weeknumber.html">make_weeknumber</a></span>(<span class="dv">2000</span><span class="op">:</span><span class="dv">2001</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; &lt;weeknumber[2]&gt;</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; [1] 2000-W04 2001-W05</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="reference/make_weeknumber.html">make_weeknumber</a></span>(<span class="dv">2019</span><span class="op">:</span><span class="dv">2020</span>, <span class="dv">53</span>)</a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; &lt;weeknumber[2]&gt;</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [1] &lt;NA&gt;     2020-W53</span></a></code></pre></div>
 <p>Get year and week number from an object:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">51</span><span class="op">:</span><span class="dv">52</span>, <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/year_week.html">year_week</a></span>(x)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; $year</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; [1] 1999 2000 2000 2000 2001   NA</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; $week</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; [1] 52  1  2 52  1 NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">1</span><span class="op">:</span><span class="dv">1</span>, <span class="dv">51</span><span class="op">:</span><span class="dv">52</span>, <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="reference/year_week.html">year_week</a></span>(x)</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; $year</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; [1] 1999 2000 2000 2000 2001   NA</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; $week</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; [1] 52  1  2 52  1 NA</span></a></code></pre></div>
 <p>Print a tibble:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tibble)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W01"</span>), <span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W09"</span>)),</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(x)))</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(d)</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; # A tibble: 9 x 2</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;          x     y</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;     &lt;week&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 1 2000-W01 1.26 </span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 2 2000-W02 0.937</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 3 2000-W03 2.27 </span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 4 2000-W04 3.54 </span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 5 2000-W05 3.95 </span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 6 2000-W06 2.41 </span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; 7 2000-W07 1.49 </span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 8 2000-W08 1.19 </span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 9 2000-W09 1.18</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tibble)</a>
+<a class="sourceLine" id="cb5-3" title="3">d &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb5-4" title="4">  <span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W01"</span>), <span class="kw"><a href="reference/as_weeknumber.html">as_weeknumber</a></span>(<span class="st">"2000-W09"</span>)),</a>
+<a class="sourceLine" id="cb5-5" title="5">  <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(x)))</a>
+<a class="sourceLine" id="cb5-6" title="6">)</a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(d)</a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; # A tibble: 9 x 2</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;          x     y</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt;     &lt;week&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; 1 2000-W01 1.26 </span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; 2 2000-W02 0.937</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; 3 2000-W03 2.27 </span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; 4 2000-W04 3.54 </span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 5 2000-W05 3.95 </span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 6 2000-W06 2.41 </span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 7 2000-W07 1.49 </span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 8 2000-W08 1.19 </span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 9 2000-W09 1.18</span></a></code></pre></div>
 <p>Plot with week number scale:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">p &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(d, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x, y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(p)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb6-2" title="2">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(d, <span class="kw">aes</span>(x, y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>()</a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(p)</a></code></pre></div>
 <p><img src="reference/figures/README-plot-1.png" width="100%"></p>
 </div>
 </div>

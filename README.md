@@ -3,6 +3,12 @@
 
 # A Class for Week Numbers
 
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/hmalmedal/weeknumber/workflows/R-CMD-check/badge.svg)](https://github.com/hmalmedal/weeknumber/actions)
+<!-- badges: end -->
+
 A class for week numbers, according to ISO 8601.
 
 ## Installation

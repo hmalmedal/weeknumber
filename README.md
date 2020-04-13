@@ -11,6 +11,10 @@ status](https://github.com/hmalmedal/weeknumber/workflows/R-CMD-check/badge.svg)
 
 A class for week numbers, according to ISO 8601.
 
+## Documentation
+
+  - <https://hmalmedal.github.io/weeknumber/>
+
 ## Installation
 
 Install from [GitHub](https://github.com/hmalmedal/weeknumber):

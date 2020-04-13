@@ -34,5 +34,5 @@ scale_y_weeknumber(
 \item{name, breaks, minor_breaks, labels, limits, expand, oob, na.value, position}{See link for details.}
 }
 \description{
-See \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}} for details.
+See \link[ggplot2:scale_continuous]{ggplot2::scale_continuous} for details.
 }

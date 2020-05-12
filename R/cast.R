@@ -33,9 +33,15 @@ vec_cast.weeknumber.weeknumber <- function(x, to, ...) {
   x
 }
 
-#' @method vec_cast.weeknumber numeric
+#' @method vec_cast.weeknumber double
 #' @export
-vec_cast.weeknumber.numeric <- function(x, to, ...) {
+vec_cast.weeknumber.double <- function(x, to, ...) {
+  weeknumber(x)
+}
+
+#' @method vec_cast.weeknumber integer
+#' @export
+vec_cast.weeknumber.integer <- function(x, to, ...) {
   weeknumber(x)
 }
 
@@ -87,12 +93,16 @@ vec_cast.weeknumber.Date <- function(x, to, ...) {
 #' @method vec_cast.Date weeknumber
 #' @export
 vec_cast.Date.weeknumber <- function(x, to, ...) {
-  vec_cast(vec_data(x) * 7 + vec_data(origin_date), new_date())
+  lubridate::as_date(vec_data(x) * 7 + vec_data(origin_date))
 }
 
-#' @method vec_cast.weeknumber POSIXt
+#' @method vec_cast.weeknumber POSIXct
 #' @export
-vec_cast.weeknumber.POSIXt <- vec_cast.weeknumber.Date
+vec_cast.weeknumber.POSIXct <- vec_cast.weeknumber.Date
+
+#' @method vec_cast.weeknumber POSIXlt
+#' @export
+vec_cast.weeknumber.POSIXlt <- vec_cast.weeknumber.Date
 
 #' @method vec_cast.POSIXct weeknumber
 #' @export

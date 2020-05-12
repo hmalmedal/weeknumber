@@ -17,7 +17,7 @@ Imports:
     methods,
     pillar,
     scales,
-    vctrs (>= 0.2.0)
+    vctrs (>= 0.3.0)
 Suggests:
     testthat (>= 2.1.0)
 Encoding: UTF-8

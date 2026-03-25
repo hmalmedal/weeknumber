@@ -80,8 +80,8 @@ weeknumber_breaks <- function(n = 5) {
   }
 }
 
-weeknumber_trans <- function() {
-  scales::trans_new(
+weeknumber_transform <- function() {
+  scales::new_transform(
     "weeknumber",
     transform = vec_data,
     inverse = as_weeknumber,
@@ -117,7 +117,7 @@ scale_x_weeknumber <- function(name = ggplot2::waiver(),
     oob = oob,
     na.value = na.value,
     position = position,
-    trans = weeknumber_trans()
+    transform = weeknumber_transform()
   )
 }
 
@@ -142,7 +142,7 @@ scale_y_weeknumber <- function(name = ggplot2::waiver(),
     oob = oob,
     na.value = na.value,
     position = position,
-    trans = weeknumber_trans()
+    transform = weeknumber_transform()
   )
 }
 

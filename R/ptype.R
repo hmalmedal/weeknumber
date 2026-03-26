@@ -1,5 +1,5 @@
 #' @export
-vec_ptype_abbr.weeknumber <- function(x) {
+vec_ptype_abbr.weeknumber <- function(x, ..., prefix_named = FALSE, suffix_shape = FALSE) {
   "week"
 }
 

@@ -1,4 +1,5 @@
 #' @import vctrs
+#' @importFrom methods setOldClass
 #' @aliases NULL weeknumber-package
 #' @keywords package
 "_PACKAGE"

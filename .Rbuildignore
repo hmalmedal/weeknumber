@@ -4,3 +4,6 @@
 ^LICENSE\.txt$
 ^\.github$
 ^AGENTS\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

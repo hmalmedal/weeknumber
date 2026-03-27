@@ -64,7 +64,7 @@ d <- tibble(
   y = cumsum(rnorm(length(x)))
 )
 print(d)
-#> # A tibble: 9 x 2
+#> # A tibble: 9 × 2
 #>          x     y
 #>     <week> <dbl>
 #> 1 2000-W01 1.26 

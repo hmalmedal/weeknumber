@@ -5,15 +5,14 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/hmalmedal/weeknumber/workflows/R-CMD-check/badge.svg)](https://github.com/hmalmedal/weeknumber/actions)
+[![R-CMD-check](https://github.com/hmalmedal/weeknumber/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hmalmedal/weeknumber/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A class for week numbers, according to ISO 8601.
 
 ## Documentation
 
-  - <https://hmalmedal.github.io/weeknumber/>
+- <https://hmalmedal.github.io/weeknumber/>
 
 ## Installation
 
@@ -73,7 +72,7 @@ d <- tibble(
   y = cumsum(rnorm(length(x)))
 )
 print(d)
-#> # A tibble: 9 x 2
+#> # A tibble: 9 × 2
 #>          x     y
 #>     <week> <dbl>
 #> 1 2000-W01 1.26 
@@ -96,4 +95,4 @@ p <- ggplot(d, aes(x, y)) +
 print(p)
 ```
 
-<img src="man/figures/README-plot-1.png" width="100%" />
+<img src="man/figures/README-plot-1.png" alt="" width="100%" />

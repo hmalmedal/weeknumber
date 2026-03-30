@@ -20,8 +20,9 @@ make_weeknumber(year = 2000, week = 1)
 
 ## Details
 
-Input arguments are recycled to their common size. Invalid weeks result
-in `NA`.
+Input arguments are recycled to their common size, using
+[`vctrs::vec_recycle_common()`](https://vctrs.r-lib.org/reference/vec_recycle.html).
+Invalid weeks result in `NA`.
 
 ## Examples
 

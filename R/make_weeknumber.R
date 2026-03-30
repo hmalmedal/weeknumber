@@ -2,8 +2,8 @@
 #'
 #' Make week number object from year and week.
 #'
-#' Input arguments are recycled to their common size. Invalid weeks result in
-#' `NA`.
+#' Input arguments are recycled to their common size, using
+#' [vctrs::vec_recycle_common()]. Invalid weeks result in `NA`.
 #'
 #' @param year Year, coerced to numeric.
 #' @param week Week, coerced to numeric.

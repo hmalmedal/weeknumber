@@ -15,8 +15,8 @@ make_weeknumber(year = 2000, week = 1)
 Make week number object from year and week.
 }
 \details{
-Input arguments are recycled to their common size. Invalid weeks result in
-\code{NA}.
+Input arguments are recycled to their common size, using
+\code{\link[vctrs:vec_recycle]{vctrs::vec_recycle_common()}}. Invalid weeks result in \code{NA}.
 }
 \examples{
 make_weeknumber(2000:2001, 4:5)

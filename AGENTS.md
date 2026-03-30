@@ -28,7 +28,7 @@ Guidance for coding agents working in this repository.
 ## Generated Files
 
 - `README.md` is generated from `README.Rmd`.
-- `man/*.Rd` and likely parts of `NAMESPACE` are generated from roxygen comments in `R/`.
+- `man/*.Rd` and `NAMESPACE` are generated from roxygen comments in `R/`.
 - If you change public functions, documentation, or exports, update roxygen comments in `R/` first and regenerate docs with `roxygen2::roxygenise()` if the environment supports it.
 
 ## Suggested Workflow
@@ -42,6 +42,8 @@ Guidance for coding agents working in this repository.
 ## Verification Commands
 
 Run from the repository root.
+
+Quick targeted test runs:
 
 ```r
 testthat::test_dir("tests/testthat")

@@ -69,7 +69,7 @@
 <ul><li>
 <code>README.md</code> is generated from <code>README.Rmd</code>.</li>
 <li>
-<code>man/*.Rd</code> and likely parts of <code>NAMESPACE</code> are generated from roxygen comments in <code>R/</code>.</li>
+<code>man/*.Rd</code> and <code>NAMESPACE</code> are generated from roxygen comments in <code>R/</code>.</li>
 <li>If you change public functions, documentation, or exports, update roxygen comments in <code>R/</code> first and regenerate docs with <code>roxygen2::roxygenise()</code> if the environment supports it.</li>
 </ul></div>
 <div class="section level2">
@@ -83,6 +83,7 @@
 <div class="section level2">
 <h2 id="verification-commands">Verification Commands<a class="anchor" aria-label="anchor" href="#verification-commands"></a></h2>
 <p>Run from the repository root.</p>
+<p>Quick targeted test runs:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_dir.html" class="external-link">test_dir</a></span><span class="op">(</span><span class="st">"tests/testthat"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">

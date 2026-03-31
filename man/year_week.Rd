@@ -2,20 +2,26 @@
 % Please edit documentation in R/year_week.R
 \name{year_week}
 \alias{year_week}
-\title{Get year and week number}
+\title{Extract ISO year and week components}
 \usage{
 year_week(x)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{A \code{weeknumber} vector, or an object coercible with
+\code{\link[=as_weeknumber]{as_weeknumber()}}.}
 }
 \value{
-A named list with two elements: \code{year} and \code{week}.
+A named list with components \code{year} and \code{week}, each the same length
+as \code{x}. Missing inputs produce missing values in both components.
 }
 \description{
-Get year and week number from an object.
+\code{year_week()} returns the ISO 8601 year and week for a \code{weeknumber} vector.
+For convenience, character, factor, \code{Date}, \code{POSIXct}, and \code{POSIXlt} inputs are
+first converted with \code{\link[=as_weeknumber]{as_weeknumber()}}.
 }
 \examples{
-x <- as_weeknumber(c(-1:1, 51:52, NA))
+x <- make_weeknumber(c(2019, 2020, NA), c(52, 53, NA))
 year_week(x)
+
+year_week(as.Date(c("2020-12-28", "2021-01-04")))
 }

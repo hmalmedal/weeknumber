@@ -1,14 +1,20 @@
-#' Get year and week number
+#' Extract ISO year and week components
 #'
-#' Get year and week number from an object.
+#' `year_week()` returns the ISO 8601 year and week for a `weeknumber` vector.
+#' For convenience, character, factor, `Date`, `POSIXct`, and `POSIXlt` inputs are
+#' first converted with [as_weeknumber()].
 #'
-#' @param x An object.
+#' @param x A `weeknumber` vector, or an object coercible with
+#'   [as_weeknumber()].
 #'
-#' @return A named list with two elements: `year` and `week`.
+#' @return A named list with components `year` and `week`, each the same length
+#'   as `x`. Missing inputs produce missing values in both components.
 #'
 #' @examples
-#' x <- as_weeknumber(c(-1:1, 51:52, NA))
+#' x <- make_weeknumber(c(2019, 2020, NA), c(52, 53, NA))
 #' year_week(x)
+#'
+#' year_week(as.Date(c("2020-12-28", "2021-01-04")))
 #' @export
 year_week <- function(x) {
   UseMethod("year_week")

@@ -4,7 +4,7 @@
 \alias{scale_weeknumber}
 \alias{scale_x_weeknumber}
 \alias{scale_y_weeknumber}
-\title{Scales for week numbers}
+\title{Position scales for \code{weeknumber} vectors}
 \usage{
 scale_x_weeknumber(
   name = ggplot2::waiver(),
@@ -31,8 +31,35 @@ scale_y_weeknumber(
 )
 }
 \arguments{
-\item{name, breaks, minor_breaks, labels, limits, expand, oob, na.value, position}{See link for details.}
+\item{name, breaks, minor_breaks, labels, limits, expand, oob, na.value, position}{Passed on to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}} or
+\code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}}. See those functions for details.}
+}
+\value{
+A ggplot2 position scale for \code{weeknumber} data.
 }
 \description{
-See \link[ggplot2:scale_continuous]{ggplot2::scale_continuous} for details.
+\code{scale_x_weeknumber()} and \code{scale_y_weeknumber()} create continuous ggplot2
+position scales for \code{weeknumber} data on the x and y axes.
+}
+\details{
+These helpers use the package's \code{weeknumber} transformation so ggplot2 can
+plot \code{weeknumber} vectors directly while preserving \code{weeknumber} values for
+break calculations and labels. By default, breaks are chosen from sensible
+weekly, monthly-ish, quarterly-ish, and yearly intervals across the displayed
+range.
+}
+\examples{
+df <- data.frame(
+  week = make_weeknumber(2024, 1:6),
+  value = c(3, 4, 2, 5, 6, 4)
+)
+
+ggplot2::ggplot(df, ggplot2::aes(week, value)) +
+  ggplot2::geom_line() +
+  scale_x_weeknumber()
+
+ggplot2::ggplot(df, ggplot2::aes(value, week)) +
+  ggplot2::geom_point() +
+  scale_y_weeknumber()
+
 }

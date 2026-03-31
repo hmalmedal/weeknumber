@@ -5,7 +5,7 @@
 - [`as_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/as_weeknumber.md)
   : Coerce to week number class
 - [`make_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/make_weeknumber.md)
-  : Make week number
+  : Make weeknumber from ISO year and week
 - [`scale_x_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/scale_weeknumber.md)
   [`scale_y_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/scale_weeknumber.md)
   : Scales for week numbers
@@ -16,4 +16,4 @@
   [`is_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/weeknumber.md)
   : Week number class
 - [`year_week()`](https://hmalmedal.github.io/weeknumber/reference/year_week.md)
-  : Get year and week number
+  : Extract ISO year and week components

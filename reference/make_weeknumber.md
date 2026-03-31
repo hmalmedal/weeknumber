@@ -1,6 +1,6 @@
-# Make week number
+# Make weeknumber from ISO year and week
 
-Make week number object from year and week.
+Construct a `weeknumber` vector from ISO 8601 year and week values.
 
 ## Usage
 
@@ -16,13 +16,17 @@ make_weeknumber(year = 2000, week = 1)
 
 - week:
 
-  Week, coerced to numeric.
+  ISO week, coerced to numeric.
+
+## Value
+
+A `weeknumber` vector.
 
 ## Details
 
 Input arguments are recycled to their common size, using
 [`vctrs::vec_recycle_common()`](https://vctrs.r-lib.org/reference/vec_recycle.html).
-Invalid weeks result in `NA`.
+Weeks outside the valid range for the corresponding year result in `NA`.
 
 ## Examples
 

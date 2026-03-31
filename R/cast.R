@@ -1,8 +1,13 @@
 #' Coerce to week number class
 #'
-#' Coerce object to week number class.
+#' Coerce an object to a `weeknumber` vector.
+#'
+#' Use `as_weeknumber()` to convert numbers, ISO week strings like
+#' `"2000-W01"`, factors, and date-time objects to `weeknumber` values.
 #'
 #' @param x An object.
+#'
+#' @return A `weeknumber` vector.
 #'
 #' @examples
 #' as_weeknumber(c(-1:1, 51:52, NA))

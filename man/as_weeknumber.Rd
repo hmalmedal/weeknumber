@@ -9,8 +9,15 @@ as_weeknumber(x)
 \arguments{
 \item{x}{An object.}
 }
+\value{
+A \code{weeknumber} vector.
+}
 \description{
-Coerce object to week number class.
+Coerce an object to a \code{weeknumber} vector.
+}
+\details{
+Use \code{as_weeknumber()} to convert numbers, ISO week strings like
+\code{"2000-W01"}, factors, and date-time objects to \code{weeknumber} values.
 }
 \examples{
 as_weeknumber(c(-1:1, 51:52, NA))

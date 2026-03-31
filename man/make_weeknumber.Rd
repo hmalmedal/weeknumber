@@ -2,21 +2,25 @@
 % Please edit documentation in R/make_weeknumber.R
 \name{make_weeknumber}
 \alias{make_weeknumber}
-\title{Make week number}
+\title{Make weeknumber from ISO year and week}
 \usage{
 make_weeknumber(year = 2000, week = 1)
 }
 \arguments{
 \item{year}{Year, coerced to numeric.}
 
-\item{week}{Week, coerced to numeric.}
+\item{week}{ISO week, coerced to numeric.}
+}
+\value{
+A \code{weeknumber} vector.
 }
 \description{
-Make week number object from year and week.
+Construct a \code{weeknumber} vector from ISO 8601 year and week values.
 }
 \details{
 Input arguments are recycled to their common size, using
-\code{\link[vctrs:vec_recycle]{vctrs::vec_recycle_common()}}. Invalid weeks result in \code{NA}.
+\code{\link[vctrs:vec_recycle]{vctrs::vec_recycle_common()}}. Weeks outside the valid range for the
+corresponding year result in \code{NA}.
 }
 \examples{
 make_weeknumber(2000:2001, 4:5)

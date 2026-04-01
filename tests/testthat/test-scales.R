@@ -36,6 +36,22 @@ test_that("breaks stay on whole year starts for long ranges", {
   expect_true(all(yw$year %in% 2000:2020))
 })
 
+test_that("spaced long-range year breaks use regular gaps", {
+  breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)))
+  yw <- year_week(breaks)
+
+  expect_equal(yw$year, c(2020, 2022, 2024, 2026, 2028, 2030))
+  expect_true(all(yw$week == 1))
+})
+
+test_that("spaced long-range year breaks do not force uneven endpoints", {
+  breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2031, 1)))
+  yw <- year_week(breaks)
+
+  expect_equal(yw$year, c(2020, 2022, 2024, 2026, 2028, 2030))
+  expect_true(all(yw$week == 1))
+})
+
 test_that("scale_x_weeknumber handles ggplot2 default expansion cleanly", {
   df <- data.frame(
     week = make_weeknumber(2024, 1:6),

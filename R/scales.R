@@ -23,7 +23,19 @@ weeknumber_year_week_breaks <- function(years, weeks, x1, x2) {
 }
 
 weeknumber_spaced_years <- function(years, n) {
-  i <- unique(round(seq.int(1, length(years), length.out = min(length(years), n))))
+  n_years <- length(years)
+  n <- min(n_years, max(1L, as.integer(n)))
+
+  if (n == n_years) {
+    return(years)
+  }
+
+  if (n <= 1L) {
+    return(years[n_years])
+  }
+
+  step <- ceiling((n_years - 1) / (n - 1))
+  i <- seq.int(1L, n_years, by = step)
   years[i]
 }
 

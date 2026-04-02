@@ -2,19 +2,25 @@
 % Please edit documentation in R/weeknumber-package.R
 \name{weeknumber}
 \alias{weeknumber}
-\alias{new_weeknumber}
-\alias{is_weeknumber}
-\title{Week number class}
+\title{Helper for weeknumber vectors}
 \usage{
-new_weeknumber(x = double())
-
 weeknumber(x = double())
-
-is_weeknumber(x)
 }
 \arguments{
-\item{x}{An object.}
+\item{x}{An object coercible to double.}
+}
+\value{
+A \code{weeknumber} vector.
 }
 \description{
-Constructor, helper and test functions for the week number class.
+\code{weeknumber()} is a user-facing helper that casts \code{x} to double and then
+constructs a \code{weeknumber} vector with \code{\link[=new_weeknumber]{new_weeknumber()}}.
+}
+\details{
+This helper follows the vctrs convention of coercing user input before
+calling the low-level constructor. For ISO year/week pairs, strings, or
+date-time objects, use \code{\link[=make_weeknumber]{make_weeknumber()}} or \code{\link[=as_weeknumber]{as_weeknumber()}}.
+}
+\examples{
+weeknumber(0:2)
 }

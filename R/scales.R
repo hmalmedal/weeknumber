@@ -1,28 +1,29 @@
-weeknumber_break_crop <- function(x, x1, x2) {
-  x <- sort(unique(x))
-  x[is.finite(x) & x >= x1 & x <= x2]
+weeknumber_trim_breaks_to_limits <- function(breaks, lower_limit, upper_limit) {
+  breaks <- sort(unique(breaks))
+  breaks[is.finite(breaks) & breaks >= lower_limit & breaks <= upper_limit]
 }
 
-weeknumber_step_breaks <- function(x1, x2, by, anchor = 0) {
-  if (x2 < x1) {
+weeknumber_regular_breaks <- function(lower_limit, upper_limit, interval,
+                                      anchor = 0) {
+  if (upper_limit < lower_limit) {
     return(double())
   }
 
-  start <- x1 + ((anchor - x1) %% by)
-  seq.int(start, x2, by = by)
+  first_break <- lower_limit + ((anchor - lower_limit) %% interval)
+  seq.int(first_break, upper_limit, by = interval)
 }
 
-weeknumber_year_week_breaks <- function(years, weeks, x1, x2) {
-  x <- vec_data(
+weeknumber_year_week_breaks <- function(years, weeks, lower_limit, upper_limit) {
+  breaks <- vec_data(
     make_weeknumber(
       rep(years, each = length(weeks)),
       rep(weeks, times = length(years))
     )
   )
-  weeknumber_break_crop(x, x1, x2)
+  weeknumber_trim_breaks_to_limits(breaks, lower_limit, upper_limit)
 }
 
-weeknumber_spaced_years <- function(years, n) {
+weeknumber_select_spaced_years <- function(years, n) {
   n_years <- length(years)
   n <- min(n_years, max(1L, as.integer(n)))
 
@@ -34,25 +35,25 @@ weeknumber_spaced_years <- function(years, n) {
     return(years[n_years])
   }
 
-  step <- ceiling((n_years - 1) / (n - 1))
-  i <- seq.int(1L, n_years, by = step)
-  years[i]
+  spacing <- ceiling((n_years - 1) / (n - 1))
+  selected_positions <- seq.int(1L, n_years, by = spacing)
+  years[selected_positions]
 }
 
-weeknumber_break_select <- function(candidates, n) {
-  sizes <- vapply(candidates, length, integer(1))
-  keep <- sizes > 0L
+weeknumber_choose_breaks <- function(candidates, max_breaks) {
+  candidate_sizes <- vapply(candidates, length, integer(1))
+  has_breaks <- candidate_sizes > 0L
 
-  if (!any(keep)) {
+  if (!any(has_breaks)) {
     return(double())
   }
 
-  i <- which(keep & sizes <= n)[1]
-  if (is.na(i)) {
-    i <- which(keep)[which.min(sizes[keep])]
+  selected_index <- which(has_breaks & candidate_sizes <= max_breaks)[1]
+  if (is.na(selected_index)) {
+    selected_index <- which(has_breaks)[which.min(candidate_sizes[has_breaks])]
   }
 
-  candidates[[i]]
+  candidates[[selected_index]]
 }
 
 weeknumber_breaks <- function(n = 5) {
@@ -62,41 +63,48 @@ weeknumber_breaks <- function(n = 5) {
       n <- 5L
     }
 
-    lim <- max(2L, n + 2L)
-    x <- sort(vec_data(as_weeknumber(x)))
-    x <- x[is.finite(x)]
+    max_breaks <- max(2L, n + 2L)
+    week_numbers <- sort(vec_data(as_weeknumber(x)))
+    week_numbers <- week_numbers[is.finite(week_numbers)]
 
-    if (length(x) == 0) {
+    if (length(week_numbers) == 0) {
       return(new_weeknumber())
     }
 
     # ggplot2 passes expanded limits, so snap back to visible whole weeks.
-    x1 <- ceiling(x[1])
-    x2 <- floor(x[length(x)])
+    lower_limit <- ceiling(week_numbers[1])
+    upper_limit <- floor(week_numbers[length(week_numbers)])
 
-    if (x2 < x1) {
+    if (upper_limit < lower_limit) {
       return(new_weeknumber())
     }
 
-    if (x1 == x2) {
-      return(new_weeknumber(x1))
+    if (lower_limit == upper_limit) {
+      return(new_weeknumber(lower_limit))
     }
 
-    years <- year_week(as_weeknumber(c(x1, x2)))$year
+    years <- year_week(as_weeknumber(c(lower_limit, upper_limit)))$year
     years <- seq.int(years[1], years[2])
 
     candidates <- list(
-      weeknumber_step_breaks(x1, x2, by = 1L),
-      weeknumber_step_breaks(x1, x2, by = 2L),
-      weeknumber_step_breaks(x1, x2, by = 4L),
-      weeknumber_step_breaks(x1, x2, by = 8L),
-      weeknumber_year_week_breaks(years, c(1L, 14L, 27L, 40L), x1, x2),
-      weeknumber_year_week_breaks(years, c(1L, 27L), x1, x2),
-      weeknumber_year_week_breaks(years, 1L, x1, x2),
-      weeknumber_year_week_breaks(weeknumber_spaced_years(years, lim), 1L, x1, x2)
+      weeknumber_regular_breaks(lower_limit, upper_limit, interval = 1L),
+      weeknumber_regular_breaks(lower_limit, upper_limit, interval = 2L),
+      weeknumber_regular_breaks(lower_limit, upper_limit, interval = 4L),
+      weeknumber_regular_breaks(lower_limit, upper_limit, interval = 8L),
+      weeknumber_year_week_breaks(
+        years, c(1L, 14L, 27L, 40L), lower_limit, upper_limit
+      ),
+      weeknumber_year_week_breaks(years, c(1L, 27L), lower_limit, upper_limit),
+      weeknumber_year_week_breaks(years, 1L, lower_limit, upper_limit),
+      weeknumber_year_week_breaks(
+        weeknumber_select_spaced_years(years, max_breaks),
+        1L,
+        lower_limit,
+        upper_limit
+      )
     )
 
-    new_weeknumber(as.double(weeknumber_break_select(candidates, lim)))
+    new_weeknumber(as.double(weeknumber_choose_breaks(candidates, max_breaks)))
   }
 }
 

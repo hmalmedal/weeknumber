@@ -1,7 +1,6 @@
 # Test for weeknumber vectors
 
-`is_weeknumber()` tests whether `x` inherits from the `weeknumber`
-class.
+Tests whether an object inherits from the `weeknumber` class.
 
 ## Usage
 

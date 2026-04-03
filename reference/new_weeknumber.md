@@ -1,7 +1,7 @@
 # Low-level constructor for weeknumber vectors
 
-`new_weeknumber()` is a low-level constructor that creates `weeknumber`
-vectors from their underlying double representation.
+This is a low-level constructor that creates `weeknumber` vectors from
+their underlying double representation.
 
 ## Usage
 

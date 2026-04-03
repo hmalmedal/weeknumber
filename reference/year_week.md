@@ -1,8 +1,8 @@
 # Extract ISO year and week components
 
-`year_week()` returns the ISO 8601 year and week for a `weeknumber`
-vector. For convenience, character, factor, `Date`, `POSIXct`, and
-`POSIXlt` inputs are first converted with
+Returns the ISO 8601 year and week for a `weeknumber` vector. For
+convenience, character, factor, `Date`, `POSIXct`, and `POSIXlt` inputs
+are first converted with
 [`as_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/as_weeknumber.md).
 
 ## Usage

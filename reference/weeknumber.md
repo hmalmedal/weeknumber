@@ -1,6 +1,6 @@
 # Helper for weeknumber vectors
 
-`weeknumber()` is a user-facing helper that casts `x` to double and then
+This is a user-facing helper that casts `x` to double and then
 constructs a `weeknumber` vector with
 [`new_weeknumber()`](https://hmalmedal.github.io/weeknumber/reference/new_weeknumber.md).
 

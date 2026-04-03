@@ -13,8 +13,8 @@ weeknumber(x = double())
 A \code{weeknumber} vector.
 }
 \description{
-\code{weeknumber()} is a user-facing helper that casts \code{x} to double and then
-constructs a \code{weeknumber} vector with \code{\link[=new_weeknumber]{new_weeknumber()}}.
+This is a user-facing helper that casts \code{x} to double and then constructs a
+\code{weeknumber} vector with \code{\link[=new_weeknumber]{new_weeknumber()}}.
 }
 \details{
 This helper follows the vctrs convention of coercing user input before

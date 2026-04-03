@@ -16,8 +16,8 @@ A \code{weeknumber} vector.
 Coerce an object to a \code{weeknumber} vector.
 }
 \details{
-Use \code{as_weeknumber()} to convert numbers, ISO week strings like
-\code{"2000-W01"}, factors, and date-time objects to \code{weeknumber} values.
+Convert numbers, ISO week strings like \code{"2000-W01"}, factors, and date-time
+objects to \code{weeknumber} values.
 }
 \examples{
 as_weeknumber(c(-1:1, 51:52, NA))

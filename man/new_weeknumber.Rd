@@ -13,12 +13,12 @@ new_weeknumber(x = double())
 A \code{weeknumber} vector.
 }
 \description{
-\code{new_weeknumber()} is a low-level constructor that creates \code{weeknumber}
-vectors from their underlying double representation.
+This is a low-level constructor that creates \code{weeknumber} vectors from their
+underlying double representation.
 }
 \details{
-The underlying double values count ISO weeks relative to \code{2000-W01}, so
-\code{0} represents \code{2000-W01}, \code{1} represents \code{2000-W02}, and so on. Non-finite
+The underlying double values count ISO weeks relative to \code{2000-W01}, so \code{0}
+represents \code{2000-W01}, \code{1} represents \code{2000-W02}, and so on. Non-finite
 values are converted to \code{NA_real_}.
 
 This constructor follows the vctrs convention of validating only the

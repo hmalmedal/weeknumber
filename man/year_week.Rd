@@ -15,8 +15,8 @@ A named list with components \code{year} and \code{week}, each the same length
 as \code{x}. Missing inputs produce missing values in both components.
 }
 \description{
-\code{year_week()} returns the ISO 8601 year and week for a \code{weeknumber} vector.
-For convenience, character, factor, \code{Date}, \code{POSIXct}, and \code{POSIXlt} inputs are
+Returns the ISO 8601 year and week for a \code{weeknumber} vector. For
+convenience, character, factor, \code{Date}, \code{POSIXct}, and \code{POSIXlt} inputs are
 first converted with \code{\link[=as_weeknumber]{as_weeknumber()}}.
 }
 \examples{

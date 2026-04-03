@@ -13,7 +13,7 @@ is_weeknumber(x)
 \code{TRUE} if \code{x} is a \code{weeknumber} vector, otherwise \code{FALSE}.
 }
 \description{
-\code{is_weeknumber()} tests whether \code{x} inherits from the \code{weeknumber} class.
+Tests whether an object inherits from the \code{weeknumber} class.
 }
 \examples{
 x <- weeknumber(10)

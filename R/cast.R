@@ -2,8 +2,8 @@
 #'
 #' Coerce an object to a `weeknumber` vector.
 #'
-#' Use `as_weeknumber()` to convert numbers, ISO week strings like
-#' `"2000-W01"`, factors, and date-time objects to `weeknumber` values.
+#' Convert numbers, ISO week strings like `"2000-W01"`, factors, and date-time
+#' objects to `weeknumber` values.
 #'
 #' @param x An object.
 #'

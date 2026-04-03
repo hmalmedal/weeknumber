@@ -13,22 +13,20 @@ year_intervals <- cumsum(c(0, weeks_cycle))
 
 #' Low-level constructor for weeknumber vectors
 #'
-#' @description
-#' `new_weeknumber()` is a low-level constructor that creates `weeknumber`
-#' vectors from their underlying double representation.
+#' This is a low-level constructor that creates `weeknumber` vectors from their
+#' underlying double representation.
 #'
-#' @param x A double vector of ISO week offsets from `2000-W01`.
-#'
-#' @return A `weeknumber` vector.
-#'
-#' @details
-#' The underlying double values count ISO weeks relative to `2000-W01`, so
-#' `0` represents `2000-W01`, `1` represents `2000-W02`, and so on. Non-finite
+#' The underlying double values count ISO weeks relative to `2000-W01`, so `0`
+#' represents `2000-W01`, `1` represents `2000-W02`, and so on. Non-finite
 #' values are converted to `NA_real_`.
 #'
 #' This constructor follows the vctrs convention of validating only the
 #' underlying storage type. Use [weeknumber()] for a user-facing helper and
 #' [is_weeknumber()] to test for the class.
+#'
+#' @param x A double vector of ISO week offsets from `2000-W01`.
+#'
+#' @return A `weeknumber` vector.
 #'
 #' @examples
 #' new_weeknumber(c(0, 1, NA_real_))
@@ -41,18 +39,16 @@ new_weeknumber <- function(x = double()) {
 
 #' Helper for weeknumber vectors
 #'
-#' @description
-#' `weeknumber()` is a user-facing helper that casts `x` to double and then
-#' constructs a `weeknumber` vector with [new_weeknumber()].
+#' This is a user-facing helper that casts `x` to double and then constructs a
+#' `weeknumber` vector with [new_weeknumber()].
+#'
+#' This helper follows the vctrs convention of coercing user input before
+#' calling the low-level constructor. For ISO year/week pairs, strings, or
+#' date-time objects, use [make_weeknumber()] or [as_weeknumber()].
 #'
 #' @param x An object coercible to double.
 #'
 #' @return A `weeknumber` vector.
-#'
-#' @details
-#' This helper follows the vctrs convention of coercing user input before
-#' calling the low-level constructor. For ISO year/week pairs, strings, or
-#' date-time objects, use [make_weeknumber()] or [as_weeknumber()].
 #'
 #' @examples
 #' weeknumber(0:2)
@@ -66,8 +62,7 @@ methods::setOldClass(c("weeknumber", "vctrs_vctr"))
 
 #' Test for weeknumber vectors
 #'
-#' @description
-#' `is_weeknumber()` tests whether `x` inherits from the `weeknumber` class.
+#' Tests whether an object inherits from the `weeknumber` class.
 #'
 #' @param x An object to test.
 #'

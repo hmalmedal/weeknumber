@@ -68,3 +68,18 @@ test_that("scale_x_weeknumber handles ggplot2 default expansion cleanly", {
   expect_equal(panel$breaks, as.double(df$week))
   expect_equal(panel$get_labels(), format(df$week))
 })
+
+test_that("default ggplot scale handles short weeknumber ranges", {
+  df <- tibble::tibble(
+    x = c(make_weeknumber(2000, 10), make_weeknumber(2000, 16)),
+    y = 0
+  )
+
+  panel <- ggplot2::ggplot_build(
+    ggplot2::ggplot(df, ggplot2::aes(x, y)) +
+      ggplot2::geom_point()
+  )$layout$panel_params[[1]]$x
+
+  expect_false(anyNA(panel$breaks))
+  expect_true(all(diff(panel$breaks) > 0))
+})

@@ -17,6 +17,10 @@ weeknumber_generate_regular_breaks <- function(lower_limit, upper_limit, step) {
   # each panel's lower limit.
   offset_to_first_break <- (-lower_limit) %% step
   first_break <- lower_limit + offset_to_first_break
+  if (first_break > upper_limit) {
+    return(double())
+  }
+
   seq.int(first_break, upper_limit, by = step)
 }
 

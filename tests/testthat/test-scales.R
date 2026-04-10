@@ -70,7 +70,7 @@ test_that("scale_x_weeknumber handles ggplot2 default expansion cleanly", {
 })
 
 test_that("default ggplot scale handles short weeknumber ranges", {
-  df <- tibble::tibble(
+  df <- data.frame(
     x = c(make_weeknumber(2000, 10), make_weeknumber(2000, 16)),
     y = 0
   )

@@ -10,6 +10,7 @@ scale_x_weeknumber(
   name = ggplot2::waiver(),
   breaks = ggplot2::waiver(),
   minor_breaks = ggplot2::waiver(),
+  n.breaks = NULL,
   labels = ggplot2::waiver(),
   limits = NULL,
   expand = ggplot2::waiver(),
@@ -22,6 +23,7 @@ scale_y_weeknumber(
   name = ggplot2::waiver(),
   breaks = ggplot2::waiver(),
   minor_breaks = ggplot2::waiver(),
+  n.breaks = NULL,
   labels = ggplot2::waiver(),
   limits = NULL,
   expand = ggplot2::waiver(),
@@ -33,8 +35,8 @@ scale_y_weeknumber(
 
 ## Arguments
 
-- name, breaks, minor_breaks, labels, limits, expand, oob, na.value,
-  position:
+- name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob,
+  na.value, position:
 
   Passed on to
   [`ggplot2::scale_x_continuous()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)

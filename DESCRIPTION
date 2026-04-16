@@ -12,7 +12,7 @@ URL: https://hmalmedal.github.io/weeknumber/,
     https://github.com/hmalmedal/weeknumber
 BugReports: https://github.com/hmalmedal/weeknumber/issues
 Imports:
-    ggplot2 (>= 3.5.0),
+    ggplot2 (>= 4.0.0),
     lubridate,
     methods,
     pillar,

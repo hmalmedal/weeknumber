@@ -130,7 +130,10 @@ weeknumber_build_break_candidates <- function(lower_limit, upper_limit,
 }
 
 weeknumber_breaks <- function(n = 5) {
-  function(x) {
+  default_n <- n
+  force(default_n)
+
+  function(x, n = default_n) {
     requested_breaks <- suppressWarnings(as.integer(n))
     if (is.na(requested_breaks)) {
       requested_breaks <- 5L
@@ -191,7 +194,7 @@ weeknumber_transform <- function() {
 #' weekly, monthly-ish, quarterly-ish, and yearly intervals across the displayed
 #' range.
 #'
-#' @param name,breaks,minor_breaks,labels,limits,expand,oob,na.value,position
+#' @param name,breaks,minor_breaks,n.breaks,labels,limits,expand,oob,na.value,position
 #'   Passed on to [ggplot2::scale_x_continuous()] or
 #'   [ggplot2::scale_y_continuous()]. See those functions for details.
 #'
@@ -216,6 +219,7 @@ weeknumber_transform <- function() {
 scale_x_weeknumber <- function(name = ggplot2::waiver(),
                                breaks = ggplot2::waiver(),
                                minor_breaks = ggplot2::waiver(),
+                               n.breaks = NULL,
                                labels = ggplot2::waiver(),
                                limits = NULL,
                                expand = ggplot2::waiver(),
@@ -227,6 +231,7 @@ scale_x_weeknumber <- function(name = ggplot2::waiver(),
     breaks = breaks,
     labels = labels,
     minor_breaks = minor_breaks,
+    n.breaks = n.breaks,
     limits = limits,
     expand = expand,
     oob = oob,
@@ -241,6 +246,7 @@ scale_x_weeknumber <- function(name = ggplot2::waiver(),
 scale_y_weeknumber <- function(name = ggplot2::waiver(),
                                breaks = ggplot2::waiver(),
                                minor_breaks = ggplot2::waiver(),
+                               n.breaks = NULL,
                                labels = ggplot2::waiver(),
                                limits = NULL,
                                expand = ggplot2::waiver(),
@@ -252,6 +258,7 @@ scale_y_weeknumber <- function(name = ggplot2::waiver(),
     breaks = breaks,
     labels = labels,
     minor_breaks = minor_breaks,
+    n.breaks = n.breaks,
     limits = limits,
     expand = expand,
     oob = oob,

@@ -18,6 +18,14 @@ test_that("breaks thin medium ranges with stable weekly steps", {
   expect_equal(as.double(breaks), seq(1000, 1012, by = 2))
 })
 
+test_that("breaks accept ggplot2's optional n argument", {
+  breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)), 3)
+  yw <- year_week(breaks)
+
+  expect_equal(yw$year, c(2020, 2023, 2026, 2029))
+  expect_true(all(yw$week == 1))
+})
+
 test_that("breaks prefer quarter starts across longer cross-year ranges", {
   breaks <- weeknumber_breaks()(make_weeknumber(c(2024, 2025), c(5, 20)))
   yw <- year_week(breaks)
@@ -67,6 +75,29 @@ test_that("scale_x_weeknumber handles ggplot2 default expansion cleanly", {
   expect_false(anyNA(panel$breaks))
   expect_equal(panel$breaks, as.double(df$week))
   expect_equal(panel$get_labels(), format(df$week))
+})
+
+test_that("scale_x_weeknumber forwards n.breaks to default breaks", {
+  df <- data.frame(
+    week = c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)),
+    value = c(1, 2)
+  )
+
+  default_panel <- ggplot2::ggplot_build(
+    ggplot2::ggplot(df, ggplot2::aes(week, value)) +
+      ggplot2::geom_point() +
+      scale_x_weeknumber()
+  )$layout$panel_params[[1]]$x
+
+  panel <- ggplot2::ggplot_build(
+    ggplot2::ggplot(df, ggplot2::aes(week, value)) +
+      ggplot2::geom_point() +
+      scale_x_weeknumber(n.breaks = 3)
+  )$layout$panel_params[[1]]$x
+
+  expect_lt(length(panel$breaks), length(default_panel$breaks))
+  expect_equal(year_week(as_weeknumber(panel$breaks))$year, c(2022, 2025, 2028))
+  expect_true(all(year_week(as_weeknumber(panel$breaks))$week == 1))
 })
 
 test_that("default ggplot scale handles short weeknumber ranges", {

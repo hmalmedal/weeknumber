@@ -194,7 +194,7 @@ weeknumber_transform <- function() {
 #' weekly, monthly-ish, quarterly-ish, and yearly intervals across the displayed
 #' range.
 #'
-#' @param name,breaks,minor_breaks,n.breaks,labels,limits,expand,oob,na.value,position
+#' @param name,breaks,minor_breaks,n.breaks,labels,limits,expand,oob,na.value,guide,position,sec.axis
 #'   Passed on to [ggplot2::scale_x_continuous()] or
 #'   [ggplot2::scale_y_continuous()]. See those functions for details.
 #'
@@ -216,55 +216,67 @@ weeknumber_transform <- function() {
 #'
 #' @name scale_weeknumber
 #' @export
-scale_x_weeknumber <- function(name = ggplot2::waiver(),
-                               breaks = ggplot2::waiver(),
-                               minor_breaks = ggplot2::waiver(),
-                               n.breaks = NULL,
-                               labels = ggplot2::waiver(),
-                               limits = NULL,
-                               expand = ggplot2::waiver(),
-                               oob = scales::censor,
-                               na.value = NA_real_,
-                               position = "bottom") {
+scale_x_weeknumber <- function(
+    name = ggplot2::waiver(),
+    breaks = ggplot2::waiver(),
+    minor_breaks = ggplot2::waiver(),
+    n.breaks = NULL,
+    labels = ggplot2::waiver(),
+    limits = NULL,
+    expand = ggplot2::waiver(),
+    oob = scales::censor,
+    na.value = NA_real_,
+    guide = ggplot2::waiver(),
+    position = "bottom",
+    sec.axis = ggplot2::waiver()
+) {
   ggplot2::scale_x_continuous(
     name = name,
     breaks = breaks,
-    labels = labels,
     minor_breaks = minor_breaks,
     n.breaks = n.breaks,
+    labels = labels,
     limits = limits,
     expand = expand,
     oob = oob,
     na.value = na.value,
+    transform = weeknumber_transform(),
+    guide = guide,
     position = position,
-    transform = weeknumber_transform()
+    sec.axis = sec.axis
   )
 }
 
 #' @name scale_weeknumber
 #' @export
-scale_y_weeknumber <- function(name = ggplot2::waiver(),
-                               breaks = ggplot2::waiver(),
-                               minor_breaks = ggplot2::waiver(),
-                               n.breaks = NULL,
-                               labels = ggplot2::waiver(),
-                               limits = NULL,
-                               expand = ggplot2::waiver(),
-                               oob = scales::censor,
-                               na.value = NA_real_,
-                               position = "left") {
+scale_y_weeknumber <- function(
+    name = ggplot2::waiver(),
+    breaks = ggplot2::waiver(),
+    minor_breaks = ggplot2::waiver(),
+    n.breaks = NULL,
+    labels = ggplot2::waiver(),
+    limits = NULL,
+    expand = ggplot2::waiver(),
+    oob = scales::censor,
+    na.value = NA_real_,
+    guide = ggplot2::waiver(),
+    position = "left",
+    sec.axis = ggplot2::waiver()
+) {
   ggplot2::scale_y_continuous(
     name = name,
     breaks = breaks,
-    labels = labels,
     minor_breaks = minor_breaks,
     n.breaks = n.breaks,
+    labels = labels,
     limits = limits,
     expand = expand,
     oob = oob,
     na.value = na.value,
+    transform = weeknumber_transform(),
+    guide = guide,
     position = position,
-    transform = weeknumber_transform()
+    sec.axis = sec.axis
   )
 }
 

@@ -16,7 +16,9 @@ scale_x_weeknumber(
   expand = ggplot2::waiver(),
   oob = scales::censor,
   na.value = NA_real_,
-  position = "bottom"
+  guide = ggplot2::waiver(),
+  position = "bottom",
+  sec.axis = ggplot2::waiver()
 )
 
 scale_y_weeknumber(
@@ -29,14 +31,16 @@ scale_y_weeknumber(
   expand = ggplot2::waiver(),
   oob = scales::censor,
   na.value = NA_real_,
-  position = "left"
+  guide = ggplot2::waiver(),
+  position = "left",
+  sec.axis = ggplot2::waiver()
 )
 ```
 
 ## Arguments
 
 - name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob,
-  na.value, position:
+  na.value, guide, position, sec.axis:
 
   Passed on to
   [`ggplot2::scale_x_continuous()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)

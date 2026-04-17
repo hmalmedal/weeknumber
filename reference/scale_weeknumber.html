@@ -51,7 +51,9 @@ position scales for <code>weeknumber</code> data on the x and y axes.</p>
 <span>  expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">censor</a></span>,</span>
 <span>  na.value <span class="op">=</span> <span class="cn">NA_real_</span>,</span>
-<span>  position <span class="op">=</span> <span class="st">"bottom"</span></span>
+<span>  guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>  sec.axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">scale_y_weeknumber</span><span class="op">(</span></span>
@@ -64,7 +66,9 @@ position scales for <code>weeknumber</code> data on the x and y axes.</p>
 <span>  expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  oob <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/oob.html" class="external-link">censor</a></span>,</span>
 <span>  na.value <span class="op">=</span> <span class="cn">NA_real_</span>,</span>
-<span>  position <span class="op">=</span> <span class="st">"left"</span></span>
+<span>  guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  position <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>  sec.axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,7 +76,7 @@ position scales for <code>weeknumber</code> data on the x and y axes.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-name-breaks-minor-breaks-n-breaks-labels-limits-expand-oob-na-value-position">name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob, na.value, position<a class="anchor" aria-label="anchor" href="#arg-name-breaks-minor-breaks-n-breaks-labels-limits-expand-oob-na-value-position"></a></dt>
+<dl><dt id="arg-name-breaks-minor-breaks-n-breaks-labels-limits-expand-oob-na-value-guide-position-sec-axis">name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob, na.value, guide, position, sec.axis<a class="anchor" aria-label="anchor" href="#arg-name-breaks-minor-breaks-n-breaks-labels-limits-expand-oob-na-value-guide-position-sec-axis"></a></dt>
 <dd><p>Passed on to <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">ggplot2::scale_x_continuous()</a></code> or
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">ggplot2::scale_y_continuous()</a></code>. See those functions for details.</p></dd>
 

@@ -15,14 +15,14 @@ test_that("breaks ignore expanded limits and keep visible whole weeks", {
 test_that("breaks thin medium ranges with stable weekly steps", {
   breaks <- weeknumber_breaks()(as_weeknumber(c(1000, 1012)))
 
-  expect_equal(as.double(breaks), seq(1000, 1012, by = 2))
+  expect_equal(as.double(breaks), seq(1000, 1012, by = 4))
 })
 
 test_that("breaks accept ggplot2's optional n argument", {
   breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)), 3)
   yw <- year_week(breaks)
 
-  expect_equal(yw$year, c(2020, 2023, 2026, 2029))
+  expect_equal(yw$year, c(2020, 2025, 2030))
   expect_true(all(yw$week == 1))
 })
 
@@ -44,7 +44,7 @@ test_that("breaks stay on whole year starts for long ranges", {
   expect_true(all(yw$year %in% 2000:2020))
 })
 
-test_that("spaced long-range year breaks use regular gaps", {
+test_that("spaced long-range year breaks use nice gaps", {
   breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)))
   yw <- year_week(breaks)
 
@@ -58,6 +58,21 @@ test_that("spaced long-range year breaks do not force uneven endpoints", {
 
   expect_equal(yw$year, c(2020, 2022, 2024, 2026, 2028, 2030))
   expect_true(all(yw$week == 1))
+})
+
+test_that("break count stays close to the requested target", {
+  for (width in 4:300) {
+    breaks <- weeknumber_breaks(5)(as_weeknumber(c(1000, 1000 + width)))
+    expect_true(abs(length(breaks) - 5) <= 2, info = paste("width", width))
+  }
+})
+
+test_that("invalid break counts fall back to the default", {
+  limits <- as_weeknumber(c(1000, 1050))
+
+  expect_equal(weeknumber_breaks(NULL)(limits), weeknumber_breaks()(limits))
+  expect_equal(weeknumber_breaks(NA)(limits), weeknumber_breaks()(limits))
+  expect_equal(weeknumber_breaks(0)(limits), weeknumber_breaks()(limits))
 })
 
 test_that("scale_x_weeknumber handles ggplot2 default expansion cleanly", {
@@ -96,7 +111,7 @@ test_that("scale_x_weeknumber forwards n.breaks to default breaks", {
   )$layout$panel_params[[1]]$x
 
   expect_lt(length(panel$breaks), length(default_panel$breaks))
-  expect_equal(year_week(as_weeknumber(panel$breaks))$year, c(2022, 2025, 2028))
+  expect_equal(year_week(as_weeknumber(panel$breaks))$year, c(2020, 2025, 2030))
   expect_true(all(year_week(as_weeknumber(panel$breaks))$week == 1))
 })
 

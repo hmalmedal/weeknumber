@@ -38,25 +38,7 @@ weeknumber_generate_year_week_breaks <- function(years, weeks, lower_limit,
   weeknumber_keep_breaks_in_limits(break_values, lower_limit, upper_limit)
 }
 
-weeknumber_select_evenly_spaced_years <- function(years, n) {
-  n_years <- length(years)
-  n <- min(n_years, max(1L, as.integer(n)))
-
-  if (n == n_years) {
-    return(years)
-  }
-
-  if (n <= 1L) {
-    return(years[n_years])
-  }
-
-  spacing <- ceiling((n_years - 1) / (n - 1))
-  selected_positions <- seq.int(1L, n_years, by = spacing)
-
-  years[selected_positions]
-}
-
-weeknumber_pick_break_set <- function(candidate_break_sets, max_breaks) {
+weeknumber_pick_break_set <- function(candidate_break_sets, target_breaks) {
   candidate_sizes <- vapply(candidate_break_sets, length, integer(1))
   has_breaks <- candidate_sizes > 0L
 
@@ -64,17 +46,13 @@ weeknumber_pick_break_set <- function(candidate_break_sets, max_breaks) {
     return(double())
   }
 
-  first_candidate_within_limit <- which(
-    has_breaks & candidate_sizes <= max_breaks
-  )[1]
-  if (!is.na(first_candidate_within_limit)) {
-    return(candidate_break_sets[[first_candidate_within_limit]])
-  }
+  # Treat `n.breaks` as a target. A small penalty for sparse candidates avoids
+  # axes that become unexpectedly empty when two choices are equally close.
+  scores <- abs(candidate_sizes - target_breaks) +
+    0.25 * (candidate_sizes < target_breaks)
+  scores[!has_breaks] <- Inf
 
-  smallest_non_empty_candidate <- which(has_breaks)[
-    which.min(candidate_sizes[has_breaks])
-  ]
-  candidate_break_sets[[smallest_non_empty_candidate]]
+  candidate_break_sets[[which.min(scores)]]
 }
 
 weeknumber_visible_week_limits <- function(week_values) {
@@ -92,25 +70,16 @@ weeknumber_years_in_limits <- function(lower_limit, upper_limit) {
   seq.int(limit_years[1], limit_years[2])
 }
 
-weeknumber_build_break_candidates <- function(lower_limit, upper_limit,
-                                              max_breaks) {
+weeknumber_build_break_candidates <- function(lower_limit, upper_limit) {
   years_in_range <- weeknumber_years_in_limits(lower_limit, upper_limit)
 
-  # Order matters: choose the first non-empty candidate that stays within the
-  # allowed count, moving from dense weekly breaks toward sparse yearly breaks.
-  list(
-    weekly = weeknumber_generate_regular_breaks(
-      lower_limit, upper_limit, step = 1L
-    ),
-    every_other_week = weeknumber_generate_regular_breaks(
-      lower_limit, upper_limit, step = 2L
-    ),
-    every_four_weeks = weeknumber_generate_regular_breaks(
-      lower_limit, upper_limit, step = 4L
-    ),
-    every_eight_weeks = weeknumber_generate_regular_breaks(
-      lower_limit, upper_limit, step = 8L
-    ),
+  weekly_candidates <- lapply(c(1L, 2L, 4L, 8L, 13L, 26L), function(step) {
+    weeknumber_generate_regular_breaks(lower_limit, upper_limit, step)
+  })
+  names(weekly_candidates) <- paste0("every_", c(1L, 2L, 4L, 8L, 13L, 26L),
+                                    "_weeks")
+
+  calendar_candidates <- list(
     quarter_starts = weeknumber_generate_year_week_breaks(
       years_in_range, c(1L, 14L, 27L, 40L), lower_limit, upper_limit
     ),
@@ -119,14 +88,23 @@ weeknumber_build_break_candidates <- function(lower_limit, upper_limit,
     ),
     year_starts = weeknumber_generate_year_week_breaks(
       years_in_range, 1L, lower_limit, upper_limit
-    ),
-    spaced_year_starts = weeknumber_generate_year_week_breaks(
-      weeknumber_select_evenly_spaced_years(years_in_range, max_breaks),
-      1L,
-      lower_limit,
-      upper_limit
     )
   )
+
+  multi_year_candidates <- lapply(c(2L, 5L, 10L, 20L, 25L, 50L),
+                                  function(step) {
+    selected_years <- years_in_range[years_in_range %% step == 0L]
+    weeknumber_generate_year_week_breaks(
+      selected_years, 1L, lower_limit, upper_limit
+    )
+  })
+  names(multi_year_candidates) <- paste0(
+    "every_", c(2L, 5L, 10L, 20L, 25L, 50L), "_years"
+  )
+
+  # Calendar candidates come first so equally good choices prefer meaningful
+  # ISO boundaries over grids tied only to the internal numeric representation.
+  c(calendar_candidates, weekly_candidates, multi_year_candidates)
 }
 
 weeknumber_breaks <- function(n = 5) {
@@ -134,13 +112,11 @@ weeknumber_breaks <- function(n = 5) {
   force(default_n)
 
   function(x, n = default_n) {
-    requested_breaks <- suppressWarnings(as.integer(n))
-    if (is.na(requested_breaks)) {
+    requested_breaks <- suppressWarnings(as.integer(n)[1])
+    if (length(requested_breaks) == 0L || is.na(requested_breaks) ||
+        requested_breaks < 1L) {
       requested_breaks <- 5L
     }
-
-    # Allow a small cushion so we can keep stable calendar-aligned break sets.
-    max_breaks <- max(2L, requested_breaks + 2L)
     week_values <- sort(vec_data(as_weeknumber(x)))
     week_values <- week_values[is.finite(week_values)]
 
@@ -162,12 +138,11 @@ weeknumber_breaks <- function(n = 5) {
 
     candidate_break_sets <- weeknumber_build_break_candidates(
       lower_limit,
-      upper_limit,
-      max_breaks
+      upper_limit
     )
     selected_breaks <- weeknumber_pick_break_set(
       candidate_break_sets,
-      max_breaks
+      requested_breaks
     )
 
     new_weeknumber(as.double(selected_breaks))

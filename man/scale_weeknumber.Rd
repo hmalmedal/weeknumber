@@ -37,8 +37,8 @@ scale_y_weeknumber(
 )
 }
 \arguments{
-\item{name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob, na.value, guide, position, sec.axis}{Passed on to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}} or
-\code{\link[ggplot2:scale_continuous]{ggplot2::scale_y_continuous()}}. See those functions for details.}
+\item{name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob, na.value, guide, position, sec.axis}{Passed on to \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}} or
+\code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}}. See those functions for details.}
 }
 \value{
 A ggplot2 position scale for \code{weeknumber} data.

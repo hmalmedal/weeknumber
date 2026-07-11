@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Håkon Malmedal \email{hmalmedal@gmail.com}
 
+Authors:
+\itemize{
+  \item Håkon Malmedal \email{hmalmedal@gmail.com}
+}
+
 }
 \keyword{package}

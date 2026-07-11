@@ -11,6 +11,7 @@ A class for week numbers, according to ISO 8601.
 Install from [GitHub](https://github.com/hmalmedal/weeknumber):
 
 ``` r
+
 remotes::install_github("hmalmedal/weeknumber")
 ```
 
@@ -19,6 +20,7 @@ remotes::install_github("hmalmedal/weeknumber")
 Coercion to the week number class:
 
 ``` r
+
 library(weeknumber)
 as_weeknumber(c(-1:1, 51:52, NA))
 #> <weeknumber[6]>
@@ -34,6 +36,7 @@ as_weeknumber(as.Date("2000-12-28"))
 Make week number object from year and week:
 
 ``` r
+
 make_weeknumber(2000:2001, 4:5)
 #> <weeknumber[2]>
 #> [1] 2000-W04 2001-W05
@@ -45,6 +48,7 @@ make_weeknumber(2019:2020, 53)
 Get year and week number from an object:
 
 ``` r
+
 x <- as_weeknumber(c(-1:1, 51:52, NA))
 year_week(x)
 #> $year
@@ -57,6 +61,7 @@ year_week(x)
 Print a tibble:
 
 ``` r
+
 set.seed(0)
 library(tibble)
 d <- tibble(
@@ -81,6 +86,7 @@ print(d)
 Plot with week number scale:
 
 ``` r
+
 library(ggplot2)
 p <- ggplot(d, aes(x, y)) +
   geom_line()

@@ -15,3 +15,7 @@ Useful links:
 ## Author
 
 **Maintainer**: Håkon Malmedal <hmalmedal@gmail.com>
+
+Authors:
+
+- Håkon Malmedal <hmalmedal@gmail.com>

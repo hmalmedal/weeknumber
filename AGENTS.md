@@ -57,10 +57,12 @@ Run from the repository root.
 Quick targeted test runs:
 
 ``` r
+
 testthat::test_dir("tests/testthat")
 ```
 
 ``` r
+
 devtools::test()
 ```
 

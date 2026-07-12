@@ -37,8 +37,12 @@ scale_y_weeknumber(
 )
 }
 \arguments{
-\item{name, breaks, minor_breaks, n.breaks, labels, limits, expand, oob, na.value, guide, position, sec.axis}{Passed on to \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}} or
+\item{name, breaks, minor_breaks, labels, limits, expand, oob, na.value, guide, position, sec.axis}{Passed on to \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}} or
 \code{\link[ggplot2:scale_y_continuous]{ggplot2::scale_y_continuous()}}. See those functions for details.}
+
+\item{n.breaks}{Approximate number of major breaks. The default break
+algorithm treats this as a target and may return a nearby number to retain
+regular or calendar-aligned spacing.}
 }
 \value{
 A ggplot2 position scale for \code{weeknumber} data.
@@ -49,10 +53,19 @@ position scales for \code{weeknumber} data on the x and y axes.
 }
 \details{
 These helpers use the package's \code{weeknumber} transformation so ggplot2 can
-plot \code{weeknumber} vectors directly while preserving \code{weeknumber} values for
-break calculations and labels. By default, breaks are chosen from sensible
-weekly, monthly-ish, quarterly-ish, and yearly intervals across the displayed
-range.
+plot \code{weeknumber} vectors directly and format axis labels as ISO year-week
+values.
+
+When \code{breaks} is left at its default, the scale chooses a regular weekly or
+calendar-aligned interval that is close to \code{n.breaks}. Candidate intervals
+include 1, 2, 4, 8, 13, and 26 weeks; quarter, half-year, and year starts; and
+sensible multi-year intervals. Calendar-aligned breaks are preferred when
+candidates are equally close to the requested number. Consequently,
+\code{n.breaks} is a target rather than a guarantee.
+
+Supply \code{breaks} or \code{labels} to override the defaults in the same way as for
+\code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}. Expansion added by ggplot2 is excluded from
+the default break calculation, so ticks remain on whole visible weeks.
 }
 \examples{
 df <- data.frame(
@@ -63,6 +76,11 @@ df <- data.frame(
 ggplot2::ggplot(df, ggplot2::aes(week, value)) +
   ggplot2::geom_line() +
   scale_x_weeknumber()
+
+# Request fewer major breaks while retaining calendar-aware spacing.
+ggplot2::ggplot(df, ggplot2::aes(week, value)) +
+  ggplot2::geom_line() +
+  scale_x_weeknumber(n.breaks = 3)
 
 ggplot2::ggplot(df, ggplot2::aes(value, week)) +
   ggplot2::geom_point() +

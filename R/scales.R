@@ -164,12 +164,24 @@ weeknumber_transform <- function() {
 #' position scales for `weeknumber` data on the x and y axes.
 #'
 #' These helpers use the package's `weeknumber` transformation so ggplot2 can
-#' plot `weeknumber` vectors directly while preserving `weeknumber` values for
-#' break calculations and labels. By default, breaks are chosen from sensible
-#' weekly, monthly-ish, quarterly-ish, and yearly intervals across the displayed
-#' range.
+#' plot `weeknumber` vectors directly and format axis labels as ISO year-week
+#' values.
 #'
-#' @param name,breaks,minor_breaks,n.breaks,labels,limits,expand,oob,na.value,guide,position,sec.axis
+#' When `breaks` is left at its default, the scale chooses a regular weekly or
+#' calendar-aligned interval that is close to `n.breaks`. Candidate intervals
+#' include 1, 2, 4, 8, 13, and 26 weeks; quarter, half-year, and year starts; and
+#' sensible multi-year intervals. Calendar-aligned breaks are preferred when
+#' candidates are equally close to the requested number. Consequently,
+#' `n.breaks` is a target rather than a guarantee.
+#'
+#' Supply `breaks` or `labels` to override the defaults in the same way as for
+#' [ggplot2::scale_x_continuous()]. Expansion added by ggplot2 is excluded from
+#' the default break calculation, so ticks remain on whole visible weeks.
+#'
+#' @param n.breaks Approximate number of major breaks. The default break
+#'   algorithm treats this as a target and may return a nearby number to retain
+#'   regular or calendar-aligned spacing.
+#' @param name,breaks,minor_breaks,labels,limits,expand,oob,na.value,guide,position,sec.axis
 #'   Passed on to [ggplot2::scale_x_continuous()] or
 #'   [ggplot2::scale_y_continuous()]. See those functions for details.
 #'
@@ -184,6 +196,11 @@ weeknumber_transform <- function() {
 #' ggplot2::ggplot(df, ggplot2::aes(week, value)) +
 #'   ggplot2::geom_line() +
 #'   scale_x_weeknumber()
+#'
+#' # Request fewer major breaks while retaining calendar-aware spacing.
+#' ggplot2::ggplot(df, ggplot2::aes(week, value)) +
+#'   ggplot2::geom_line() +
+#'   scale_x_weeknumber(n.breaks = 3)
 #'
 #' ggplot2::ggplot(df, ggplot2::aes(value, week)) +
 #'   ggplot2::geom_point() +

@@ -33,75 +33,37 @@
 
 <div id="agentsmd" class="section level1">
 
-<p>Guidance for coding agents working in this repository.</p>
 <div class="section level2">
-<h2 id="repository-summary">Repository Summary<a class="anchor" aria-label="anchor" href="#repository-summary"></a></h2>
-<ul><li>This is an R package named <code>weeknumber</code>.</li>
-<li>The package implements a <code>vctrs</code>-based <code>weeknumber</code> class with helpers, formatting, arithmetic, casting, and <code>ggplot2</code> scale support.</li>
-<li>Package metadata lives in <code>DESCRIPTION</code>; exported objects are registered in <code>NAMESPACE</code>.</li>
+<h2 id="package-conventions">Package conventions<a class="anchor" aria-label="anchor" href="#package-conventions"></a></h2>
+<p><code>weeknumber</code> is an R package implementing ISO 8601 weeks with a <code>vctrs</code> class and ggplot2 position scales.</p>
+<ul><li>Keep changes focused; add regression tests in <code>tests/testthat/</code> for behavior changes.</li>
+<li>Follow the existing small, vectorized functions. <code>vctrs</code> is imported package-wide in <code>R/weeknumber-package.R</code>; other packages generally use explicit <code>pkg::fun()</code> calls.</li>
+<li>Declare runtime dependencies in <code>DESCRIPTION</code> under <code>Imports</code>, and test-only or optional dependencies under <code>Suggests</code>. Avoid adding dependencies unnecessarily.</li>
 </ul></div>
 <div class="section level2">
-<h2 id="repository-layout">Repository Layout<a class="anchor" aria-label="anchor" href="#repository-layout"></a></h2>
+<h2 id="representation-and-edge-cases">Representation and edge cases<a class="anchor" aria-label="anchor" href="#representation-and-edge-cases"></a></h2>
 <ul><li>
-<code>R/</code>: package source files.</li>
+<code>R/weeknumber-package.R</code> defines the constructors and calendar constants. Storage is a double vector of week offsets: <code>0</code> is <code>2000-W01</code>, whose Monday is <code>2000-01-03</code>. Non-finite constructor inputs become <code>NA_real_</code>.</li>
 <li>
-<code>man/</code>: generated Rd documentation.</li>
-<li>
-<code>tests/testthat/</code>: unit tests.</li>
-<li>
-<code>tests/testthat.R</code>: testthat entrypoint.</li>
-<li>
-<code>README.Rmd</code>: source for the README.</li>
-<li>
-<code>README.md</code>: generated from <code>README.Rmd</code>; do not edit by hand.</li>
-<li>
-<code>.github/workflows/</code>: CI definitions for <code>R-CMD-check</code> and <code>pkgdown</code>.</li>
+<code>R/make_weeknumber.R</code> and <code>R/year_week.R</code> convert between offsets and ISO year/week pairs using a 400-year cycle. Preserve ISO week-years at New Year; they can differ from calendar years. Invalid weeks, including week 53 in a 52-week year, become <code>NA</code>.</li>
+<li>When changing conversions or arithmetic, cover relevant year boundaries, 53-week years, offsets before the origin, missing values, empty vectors, and vctrs recycling/type behavior. Casting, type compatibility, and arithmetic methods live in <code>R/cast.R</code>, <code>R/ptype.R</code>, and <code>R/arith.R</code>.</li>
+<li>Scale behavior lives in <code>R/scales.R</code>, with tests in <code>test-scales.R</code>. Default breaks must remain whole visible weeks; <code>n.breaks</code> is a target, and explicit user breaks and labels must still work.</li>
 </ul></div>
 <div class="section level2">
-<h2 id="working-norms">Working Norms<a class="anchor" aria-label="anchor" href="#working-norms"></a></h2>
-<ul><li>Make focused changes and preserve existing package structure and naming.</li>
-<li>Prefer editing the relevant file in <code>R/</code> and adding or updating tests in <code>tests/testthat/</code> for behavior changes.</li>
-<li>Keep function style consistent with the existing codebase: small functions, explicit namespace qualification where already used, and straightforward base R/vectorized logic.</li>
-<li>Do not hand-edit generated outputs unless the user explicitly asks for it.</li>
+<h2 id="generated-documentation">Generated documentation<a class="anchor" aria-label="anchor" href="#generated-documentation"></a></h2>
+<ul><li>Edit roxygen comments in <code>R/</code>, then run <code>roxygen2::roxygenise()</code> when changing documented APIs or S3 registrations. <code>man/*.Rd</code> and <code>NAMESPACE</code> are generated; inspect the diff for unrelated generator changes.</li>
+<li>Edit <code>README.Rmd</code>, then regenerate with <code>rmarkdown::render("README.Rmd")</code>. Ensure the examples use the updated package, for example by running <code><a href="https://pkgload.r-lib.org/reference/load_all.html" class="external-link">pkgload::load_all()</a></code> in the same R session before rendering.</li>
+<li>Do not hand-edit generated outputs unless explicitly requested.</li>
 </ul></div>
 <div class="section level2">
-<h2 id="generated-files">Generated Files<a class="anchor" aria-label="anchor" href="#generated-files"></a></h2>
-<ul><li>
-<code>README.md</code> is generated from <code>README.Rmd</code>.</li>
-<li>
-<code>man/*.Rd</code> and <code>NAMESPACE</code> are generated from roxygen comments in <code>R/</code>.</li>
-<li>If you change public functions, documentation, or exports, update roxygen comments in <code>R/</code> first and regenerate docs with <code>roxygen2::roxygenise()</code> if the environment supports it.</li>
-</ul></div>
-<div class="section level2">
-<h2 id="suggested-workflow">Suggested Workflow<a class="anchor" aria-label="anchor" href="#suggested-workflow"></a></h2>
-<ol style="list-style-type: decimal"><li>Read the relevant file(s) in <code>R/</code> and related tests in <code>tests/testthat/</code>.</li>
-<li>Implement the change in the smallest sensible scope.</li>
-<li>Add or update tests when behavior changes.</li>
-<li>Regenerate documentation only when needed.</li>
-<li>Run targeted verification first, then broader checks if warranted.</li>
-</ol></div>
-<div class="section level2">
-<h2 id="verification-commands">Verification Commands<a class="anchor" aria-label="anchor" href="#verification-commands"></a></h2>
-<p>Run from the repository root.</p>
-<p>Quick targeted test runs:</p>
+<h2 id="verification">Verification<a class="anchor" aria-label="anchor" href="#verification"></a></h2>
+<p>Run from the repository root in R:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_dir.html" class="external-link">test_dir</a></span><span class="op">(</span><span class="st">"tests/testthat"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">R</span> CMD check <span class="at">--no-manual</span> .</span></code></pre></div>
-<p>CI also installs dependencies with <code>remotes::install_deps(dependencies = TRUE)</code> and runs <code>rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")</code>.</p>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span>filter <span class="op">=</span> <span class="st">"scales"</span><span class="op">)</span> <span class="co"># Replace with the relevant test filename stem.</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>                  <span class="co"># Full unit suite.</span></span>
+<span><span class="fu">rcmdcheck</span><span class="fu">::</span><span class="fu">rcmdcheck</span><span class="op">(</span>args <span class="op">=</span> <span class="st">"--no-manual"</span>, error_on <span class="op">=</span> <span class="st">"error"</span><span class="op">)</span></span></code></pre></div>
+<p>Use targeted tests first; run the full suite and package check for broader package/API changes. For instructions-only edits, review the diff instead. Avoid bare <code><a href="https://testthat.r-lib.org/reference/test_dir.html" class="external-link">testthat::test_dir()</a></code>: tests call unexported helpers and need the package loaded. If devtools is unavailable, use <code><a href="https://testthat.r-lib.org/reference/test_package.html" class="external-link">testthat::test_local()</a></code>. CI configuration is in <code>.github/workflows/R-CMD-check.yaml</code>; it checks Windows, macOS, and Linux with release R, plus Linux devel and oldrel-1.</p>
 </div>
-<div class="section level2">
-<h2 id="notes-for-documentation-changes">Notes For Documentation Changes<a class="anchor" aria-label="anchor" href="#notes-for-documentation-changes"></a></h2>
-<ul><li>Keep examples aligned with package behavior.</li>
-<li>If README examples change, update <code>README.Rmd</code> and regenerate <code>README.md</code>.</li>
-<li>If exported APIs change, ensure <code>NAMESPACE</code> and <code>man/</code> stay in sync with roxygen.</li>
-</ul></div>
-<div class="section level2">
-<h2 id="notes-for-dependency-changes">Notes For Dependency Changes<a class="anchor" aria-label="anchor" href="#notes-for-dependency-changes"></a></h2>
-<ul><li>Declare runtime dependencies in <code>Imports</code> and test-only or optional tooling in <code>Suggests</code>.</li>
-<li>Prefer minimal dependency changes because CI and installation rely on standard R package tooling.</li>
-</ul></div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

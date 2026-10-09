@@ -26,7 +26,8 @@ A `weeknumber` vector.
 
 Input arguments are recycled to their common size, using
 [`vctrs::vec_recycle_common()`](https://vctrs.r-lib.org/reference/vec_recycle.html).
-Weeks outside the valid range for the corresponding year result in `NA`.
+Weeks outside the valid range for the corresponding year result in `NA`,
+as do missing, non-finite, or fractional year and week values.
 
 ## Examples
 

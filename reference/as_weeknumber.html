@@ -56,7 +56,11 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Convert numbers, ISO week strings like <code>"2000-W01"</code>, factors, and date-time
-objects to <code>weeknumber</code> values.</p>
+objects to <code>weeknumber</code> values.
+Strings must contain an integer year, <code>W</code> (optionally preceded by <code>-</code>),
+and a one- or two-digit week. Invalid strings produce <code>NA</code>.
+Date-time inputs use their local date. Casting a whole week number to a
+date-time gives Monday at midnight in the target timezone.</p>
     </div>
 
     <div class="section level2">

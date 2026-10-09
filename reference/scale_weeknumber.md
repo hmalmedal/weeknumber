@@ -74,8 +74,8 @@ Consequently, `n.breaks` is a target rather than a guarantee.
 Supply `breaks` or `labels` to override the defaults in the same way as
 for
 [`ggplot2::scale_x_continuous()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html).
-Expansion added by ggplot2 is excluded from the default break
-calculation, so ticks remain on whole visible weeks.
+Default breaks are whole weeks within the displayed limits, including
+any expansion added by ggplot2.
 
 ## Examples
 

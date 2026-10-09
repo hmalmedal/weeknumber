@@ -21,7 +21,11 @@ A `weeknumber` vector.
 ## Details
 
 Convert numbers, ISO week strings like `"2000-W01"`, factors, and
-date-time objects to `weeknumber` values.
+date-time objects to `weeknumber` values. Strings must contain an
+integer year, `W` (optionally preceded by `-`), and a one- or two-digit
+week. Invalid strings produce `NA`. Date-time inputs use their local
+date. Casting a whole week number to a date-time gives Monday at
+midnight in the target timezone.
 
 ## Examples
 

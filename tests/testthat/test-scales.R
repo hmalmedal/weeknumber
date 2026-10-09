@@ -18,6 +18,76 @@ test_that("breaks thin medium ranges with stable weekly steps", {
   expect_equal(as.double(breaks), seq(1000, 1012, by = 4))
 })
 
+test_that("breaks handle missing, empty, reversed and fractional limits", {
+  for (limits in list(numeric(), c(NA, Inf, -Inf), c(0.1, 0.9))) {
+    expect_equal(weeknumber_breaks()(limits), weeknumber())
+  }
+  expect_equal(weeknumber_breaks()(c(1, 1)), weeknumber(1))
+  expect_equal(weeknumber_breaks()(c(4.2, -0.2, NA)), weeknumber(0:4))
+  for (n in list(NaN, Inf, -Inf, -1, "invalid")) {
+    expect_equal(weeknumber_breaks(n)(c(1000, 1050)),
+                 weeknumber_breaks()(c(1000, 1050)))
+  }
+  x <- make_weeknumber(c(2020, 2021), c(52, 2))
+  expect_equal(format(weeknumber_breaks()(x)),
+               c("2020-W52", "2020-W53", "2021-W01", "2021-W02"))
+})
+
+test_that("large ranges use sparse calendar-aligned breaks", {
+  for (years in list(c(0, 10000), c(-1e9, 1e9))) {
+    limits <- make_weeknumber(years, 1)
+    for (n in c(1, 3, 5, 10)) {
+      breaks <- weeknumber_breaks(n)(limits)
+      yw <- year_week(breaks)
+      expect_gt(length(breaks), 0)
+      expect_lte(length(breaks), 2 * n)
+      expect_true(all(yw$week == 1))
+      expect_true(all(diff(as.double(breaks)) > 0))
+      expect_true(all(breaks >= limits[1] & breaks <= limits[2]))
+    }
+  }
+  expect_equal(year_week(weeknumber_breaks()(make_weeknumber(c(0, 10000), 1)))$year,
+               seq(0, 10000, by = 2000))
+})
+
+test_that("both scales honor explicit breaks, labels and limits", {
+  weeks <- make_weeknumber(c(2020, 2020, 2021, 2021), c(52, 53, 1, 2))
+  df <- data.frame(week = weeks, value = 1:4)
+  for (axis in c("x", "y")) {
+    scale <- if (axis == "x") scale_x_weeknumber else scale_y_weeknumber
+    mapping <- if (axis == "x") ggplot2::aes(week, value) else ggplot2::aes(value, week)
+    p <- ggplot2::ggplot(df, mapping) + ggplot2::geom_point()
+    panel <- ggplot2::ggplot_build(p + scale(
+      breaks = weeks[c(2, 3)], labels = c("last", "first"),
+      limits = weeks[c(2, 4)], expand = c(0, 0)
+    ))$layout$panel_params[[1]][[axis]]
+    expect_equal(panel$breaks, as.double(weeks[c(2, 3)]))
+    expect_equal(panel$get_labels(), c("last", "first"))
+    expect_equal(panel$continuous_range, as.double(weeks[c(2, 4)]))
+
+    panel <- ggplot2::ggplot_build(p + scale(
+      breaks = function(x) weeks[c(1, 4)],
+      labels = function(x) paste("Week", year_week(x)$week),
+      expand = c(0, 0)
+    ))$layout$panel_params[[1]][[axis]]
+    expect_equal(panel$breaks, as.double(weeks[c(1, 4)]))
+    expect_equal(panel$get_labels(), c("Week 52", "Week 2"))
+    panel <- ggplot2::ggplot_build(p + scale(breaks = NULL))$layout$panel_params[[1]][[axis]]
+    expect_length(panel$breaks, 0)
+  }
+})
+
+test_that("expanded scales place default breaks on visible whole weeks", {
+  df <- data.frame(week = weeknumber(c(0, 1)), value = 1:2)
+  panel <- ggplot2::ggplot_build(
+    ggplot2::ggplot(df, ggplot2::aes(value, week)) +
+      ggplot2::geom_point() +
+      scale_y_weeknumber(expand = ggplot2::expansion(add = 2))
+  )$layout$panel_params[[1]]$y
+  expect_equal(panel$breaks, -2:3)
+  expect_equal(panel$get_labels(), format(weeknumber(-2:3)))
+})
+
 test_that("breaks accept ggplot2's optional n argument", {
   breaks <- weeknumber_breaks()(c(make_weeknumber(2020, 1), make_weeknumber(2030, 1)), 3)
   yw <- year_week(breaks)

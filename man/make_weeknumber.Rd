@@ -20,7 +20,8 @@ Construct a \code{weeknumber} vector from ISO 8601 year and week values.
 \details{
 Input arguments are recycled to their common size, using
 \code{\link[vctrs:vec_recycle_common]{vctrs::vec_recycle_common()}}. Weeks outside the valid range for the
-corresponding year result in \code{NA}.
+corresponding year result in \code{NA}, as do missing, non-finite, or fractional
+year and week values.
 }
 \examples{
 make_weeknumber(2000:2001, 4:5)

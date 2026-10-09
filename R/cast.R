@@ -4,6 +4,10 @@
 #'
 #' Convert numbers, ISO week strings like `"2000-W01"`, factors, and date-time
 #' objects to `weeknumber` values.
+#' Strings must contain an integer year, `W` (optionally preceded by `-`),
+#' and a one- or two-digit week. Invalid strings produce `NA`.
+#' Date-time inputs use their local date. Casting a whole week number to a
+#' date-time gives Monday at midnight in the target timezone.
 #'
 #' @param x An object.
 #'
@@ -65,6 +69,8 @@ vec_cast.integer.weeknumber <- function(x, to, ...) {
 #' @method vec_cast.weeknumber character
 #' @export
 vec_cast.weeknumber.character <- function(x, to, ...) {
+  valid <- !is.na(x) & grepl("^[+-]?[0-9]+-?W[0-9]{1,2}$", x)
+  x[!valid] <- NA_character_
   l <- strsplit(x, "-?W")
   y <- vapply(l, `[`, "", i = 1)
   w <- vapply(l, `[`, "", i = 2)
@@ -86,7 +92,7 @@ vec_cast.weeknumber.factor <- function(x, to, ...) {
 #' @method vec_cast.factor weeknumber
 #' @export
 vec_cast.factor.weeknumber <- function(x, to, ...) {
-  vec_cast(vec_cast(x, character()), new_factor())
+  vec_cast(vec_cast(x, character()), to)
 }
 
 #' @method vec_cast.weeknumber Date
@@ -112,11 +118,11 @@ vec_cast.weeknumber.POSIXlt <- vec_cast.weeknumber.Date
 #' @method vec_cast.POSIXct weeknumber
 #' @export
 vec_cast.POSIXct.weeknumber <- function(x, to, ...) {
-  vec_cast(vec_cast(x, new_date()), new_datetime())
+  vec_cast(vec_cast(x, new_date()), to)
 }
 
 #' @method vec_cast.POSIXlt weeknumber
 #' @export
 vec_cast.POSIXlt.weeknumber <- function(x, to, ...) {
-  as.POSIXlt(vec_cast(x, new_datetime()))
+  vec_cast(vec_cast(x, new_date()), to)
 }

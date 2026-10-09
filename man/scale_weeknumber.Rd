@@ -64,8 +64,8 @@ candidates are equally close to the requested number. Consequently,
 \code{n.breaks} is a target rather than a guarantee.
 
 Supply \code{breaks} or \code{labels} to override the defaults in the same way as for
-\code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}. Expansion added by ggplot2 is excluded from
-the default break calculation, so ticks remain on whole visible weeks.
+\code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}. Default breaks are whole weeks within the
+displayed limits, including any expansion added by ggplot2.
 }
 \examples{
 df <- data.frame(

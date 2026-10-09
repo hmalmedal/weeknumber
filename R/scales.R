@@ -15,10 +15,11 @@ weeknumber_keep_visible_breaks <- function(breaks, limits) {
   breaks[is_visible]
 }
 
-weeknumber_regular_breaks <- function(limits, step) {
+weeknumber_regular_breaks <- function(limits, step, max_breaks = Inf) {
   first_break <- ceiling(limits[["lower"]] / step) * step
 
-  if (first_break > limits[["upper"]]) {
+  count <- floor((limits[["upper"]] - first_break) / step) + 1
+  if (count < 1 || count > max_breaks) {
     return(double())
   }
 
@@ -63,33 +64,47 @@ weeknumber_visible_week_limits <- function(week_values) {
   limits
 }
 
-weeknumber_years_in_limits <- function(limits) {
+weeknumber_years_in_limits <- function(limits, step = 1, max_years = Inf) {
   # Convert the numeric limits back to ISO years so cross-year ranges include
   # every year that could contribute a boundary-aligned break.
   limit_years <- year_week(as_weeknumber(limits))$year
-  seq.int(limit_years[1], limit_years[2])
+  weeknumber_regular_breaks(
+    c(lower = limit_years[[1]], upper = limit_years[[2]]), step, max_years
+  )
 }
 
-weeknumber_build_break_candidates <- function(limits) {
-  years <- weeknumber_years_in_limits(limits)
+weeknumber_build_break_candidates <- function(limits, target_count = 5L) {
+  # A candidate with more than twice the target cannot beat a nonempty
+  # candidate at or below the target. Prune before allocating dense grids.
+  max_breaks <- 2 * as.double(target_count)
+  years <- weeknumber_years_in_limits(limits, max_years = max_breaks + 2)
 
   weekly_candidates <- lapply(weeknumber_week_steps, function(step) {
-    weeknumber_regular_breaks(limits, step)
+    weeknumber_regular_breaks(limits, step, max_breaks)
   })
   names(weekly_candidates) <- paste0(
     "every_", weeknumber_week_steps, "_weeks"
   )
 
   calendar_candidates <- lapply(weeknumber_calendar_weeks, function(weeks) {
+    if ((length(years) - 2) * length(weeks) > max_breaks) {
+      return(double())
+    }
     weeknumber_year_week_breaks(years, weeks, limits)
   })
 
-  multi_year_candidates <- lapply(weeknumber_year_steps, function(step) {
-    selected_years <- years[years %% step == 0L]
+  # Extend the existing nice intervals for ranges spanning centuries or more.
+  year_span <- diff(year_week(as_weeknumber(limits))$year)
+  powers <- seq.int(2, max(2, ceiling(log10(max(1, year_span)))))
+  year_steps <- sort(unique(c(
+    weeknumber_year_steps, as.vector(outer(c(1, 2, 5), 10^powers))
+  )))
+  multi_year_candidates <- lapply(year_steps, function(step) {
+    selected_years <- weeknumber_years_in_limits(limits, step, max_breaks + 2)
     weeknumber_year_week_breaks(selected_years, 1L, limits)
   })
   names(multi_year_candidates) <- paste0(
-    "every_", weeknumber_year_steps, "_years"
+    "every_", year_steps, "_years"
   )
 
   # Calendar candidates come first so equally good choices prefer meaningful
@@ -130,7 +145,7 @@ weeknumber_breaks <- function(n = 5) {
       return(new_weeknumber(visible_limits[["lower"]]))
     }
 
-    candidates <- weeknumber_build_break_candidates(visible_limits)
+    candidates <- weeknumber_build_break_candidates(visible_limits, target_count)
     selected_breaks <- weeknumber_pick_break_set(candidates, target_count)
 
     new_weeknumber(as.double(selected_breaks))
@@ -163,8 +178,8 @@ weeknumber_transform <- function() {
 #' `n.breaks` is a target rather than a guarantee.
 #'
 #' Supply `breaks` or `labels` to override the defaults in the same way as for
-#' [ggplot2::scale_x_continuous()]. Expansion added by ggplot2 is excluded from
-#' the default break calculation, so ticks remain on whole visible weeks.
+#' [ggplot2::scale_x_continuous()]. Default breaks are whole weeks within the
+#' displayed limits, including any expansion added by ggplot2.
 #'
 #' @param n.breaks Approximate number of major breaks. The default break
 #'   algorithm treats this as a target and may return a nearby number to retain

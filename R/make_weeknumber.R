@@ -4,7 +4,8 @@
 #'
 #' Input arguments are recycled to their common size, using
 #' [vctrs::vec_recycle_common()]. Weeks outside the valid range for the
-#' corresponding year result in `NA`.
+#' corresponding year result in `NA`, as do missing, non-finite, or fractional
+#' year and week values.
 #'
 #' @param year Year, coerced to numeric.
 #' @param week ISO week, coerced to numeric.
@@ -20,6 +21,9 @@ make_weeknumber <- function(year = 2000, week = 1) {
 
   year <- as.numeric(n$year)
   week <- as.numeric(n$week)
+
+  year[!is.finite(year) | year != trunc(year)] <- NA_real_
+  week[!is.finite(week) | week != trunc(week)] <- NA_real_
 
   cycle <- (year - origin) %/% cycle_length
   j <- (year %% cycle_length) + 1

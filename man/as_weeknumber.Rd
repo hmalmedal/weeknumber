@@ -18,6 +18,10 @@ Coerce an object to a \code{weeknumber} vector.
 \details{
 Convert numbers, ISO week strings like \code{"2000-W01"}, factors, and date-time
 objects to \code{weeknumber} values.
+Strings must contain an integer year, \code{W} (optionally preceded by \code{-}),
+and a one- or two-digit week. Invalid strings produce \code{NA}.
+Date-time inputs use their local date. Casting a whole week number to a
+date-time gives Monday at midnight in the target timezone.
 }
 \examples{
 as_weeknumber(c(-1:1, 51:52, NA))

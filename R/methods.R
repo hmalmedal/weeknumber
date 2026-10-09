@@ -23,6 +23,12 @@
 #' @export
 seq.weeknumber <- function(from, to, by, length.out = NULL,
                            along.with = NULL, ...) {
+  if (!missing(from)) {
+    vec_assert(from, new_weeknumber(), size = 1L, arg = "from")
+  }
+  if (!missing(to)) {
+    vec_assert(to, new_weeknumber(), size = 1L, arg = "to")
+  }
   if (!missing(along.with)) {
     length.out <- length(along.with)
   } else if (!is.null(length.out)) {
@@ -106,6 +112,6 @@ as.Date.weeknumber <- function(x, ...) {
 }
 
 #' @export
-as.POSIXlt.weeknumber <- function(x, ...) {
-  vec_cast(x, as.POSIXlt(new_datetime()))
+as.POSIXlt.weeknumber <- function(x, tz = "", ...) {
+  vec_cast(x, as.POSIXlt(new_datetime(tzone = tz)))
 }
